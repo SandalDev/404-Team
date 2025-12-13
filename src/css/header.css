@@ -1,0 +1,120 @@
+/*header section*/
+.logo {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-list-menu {
+    display: none;
+}
+
+.header-nav {
+    display: flex;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 72px;
+}
+
+.burger-btn {
+    display: block;
+}
+
+.burger-btn {
+    padding: 0;
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+}
+
+.btn-header {
+    display: none;
+}
+
+@media only screen and (min-width: 768px) {
+    .header-container {
+        justify-content: flex-start;
+        padding: 0 64px;
+    }
+
+    .header-nav {
+        justify-content: space-between;
+        align-items: center;
+        flex: 1;
+    }
+
+    .nav-list-menu {
+        display: none;
+    }
+
+    .nav-link-menu {
+        text-wrap: nowrap;
+        font-weight: 400;
+        font-size: 16px;
+        padding: 24px 0;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .header-nav {
+        justify-content: start;
+    }
+
+    .burger-btn {
+        display: none;
+    }
+
+    .btn-header {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        white-space: nowrap;
+        border: 1px solid #88765c;
+        background-color: #88765c;
+        border-radius: 8px;
+        padding: 8px 20px;
+        width: 130px;
+        height: 40px;
+    }
+
+    .nav-link-menu {
+        position: relative;
+        padding: 12px 0;
+        color: #2e2f42;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .nav-link-menu::after {
+        content: "";
+        position: absolute;
+        left: 0%;
+        bottom: 0;
+        width: 0%;
+        height: 2px;
+        background: #000000;
+        border-radius: 2px;
+        transition: width 0.3s ease, left 0.3s ease;
+    }
+
+    .nav-link-menu:hover::after,
+    .nav-link-menu.current::after {
+        width: 100%;
+        left: 0;
+    }
+
+    .btn-header:hover,
+    .btn-header:focus {
+        color: #eee9e3;
+    }
+
+    .nav-list-menu {
+        display: flex;
+        gap: 32px;
+        padding-left: 24px;
+    }
+
+}
