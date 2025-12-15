@@ -1,3 +1,6 @@
+body {
+margin: 0;
+}
 
 h1,
 h2,
@@ -9,7 +12,7 @@ margin: 0;
 }
 
 
-
+/* Paragraphs */
 p {
 margin: 0 0 8px 0;
 }
@@ -20,12 +23,14 @@ margin-bottom: 0;
 }
 
 
+
 ul,
 ol {
 margin: 0;
 padding: 0;
 list-style: none;
 }
+
 
 
 a {
@@ -40,10 +45,10 @@ font-style: normal;
 }
 
 
-
 button {
 cursor: pointer;
 }
+
 
 
 img {
