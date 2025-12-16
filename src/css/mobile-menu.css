@@ -33,6 +33,7 @@
 .close-button {
     background: none;
     border: none;
+    box-shadow: none;
     cursor: pointer;
     padding: 4px;
 }
@@ -51,13 +52,9 @@
 
 .menu-link-menu {
     text-decoration: none;
-    font-size: 1.2rem;
-    color: #333;
-    transition: color 0.3s;
-}
-
-.menu-link-menu:hover {
-    color: #007bff;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.5;
 }
 
 .btn-header-mobile {
