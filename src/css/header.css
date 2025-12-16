@@ -1,4 +1,3 @@
-/*header section*/
 .logo {
     display: flex;
     justify-content: center;
@@ -17,6 +16,11 @@
     justify-content: space-between;
     align-items: center;
     min-height: 72px;
+    position: fixed;
+        top: 0;
+        left: 0; 
+        right: 0; 
+        z-index: 999;
 }
 
 .burger-btn {
@@ -50,21 +54,23 @@
         display: none;
     }
 
-    .nav-link-menu {
-        text-wrap: nowrap;
-        font-weight: 400;
-        font-size: 16px;
-        padding: 24px 0;
-    }
 }
 
 @media only screen and (min-width: 1440px) {
     .header-nav {
         justify-content: start;
     }
-
     .burger-btn {
         display: none;
+    }
+    .nav-link-menu {
+        text-wrap: nowrap;
+        font-weight: 400;
+    font-size: 16px;
+    padding: 24px 0;
+    }
+    .nav-link-menu:active {
+        color: #88765c;
     }
 
     .btn-header {
@@ -72,12 +78,32 @@
         justify-content: center;
         align-items: center;
         white-space: nowrap;
-        border: 1px solid #88765c;
-        background-color: #88765c;
-        border-radius: 8px;
-        padding: 8px 20px;
         width: 130px;
         height: 40px;
+        padding: 8px 20px;
+        border: 1px solid #88765c;
+        border-radius: 8px;
+        background-color: #88765c;
+        text-decoration: none;
+        box-shadow: inset 0 0 0 rgba(0, 0, 0, 0);
+        transition:
+            background-color 0.2s ease,
+            box-shadow 0.2s ease,
+            transform 0.1s ease;
+    }
+    .btn-header:hover {
+        background-color: #eee9e3;
+    }
+    .btn-header:focus-visible {
+        background-color: #eee9e3;
+        box-shadow:
+            inset 0 4px 6px -2px rgba(0, 0, 0, 0.03),
+            inset 0 12px 16px -4px rgba(0, 0, 0, 0.08);
+        outline: none;
+    }
+    .btn-header:active {
+        background-color: #c3b49d;
+        transform: translateY(1px);
     }
 
     .nav-link-menu {
@@ -95,20 +121,15 @@
         bottom: 0;
         width: 0%;
         height: 2px;
-        background: #000000;
+        background: #443b2e;
         border-radius: 2px;
         transition: width 0.3s ease, left 0.3s ease;
-    }
+    }    
 
     .nav-link-menu:hover::after,
     .nav-link-menu.current::after {
         width: 100%;
         left: 0;
-    }
-
-    .btn-header:hover,
-    .btn-header:focus {
-        color: #eee9e3;
     }
 
     .nav-list-menu {
