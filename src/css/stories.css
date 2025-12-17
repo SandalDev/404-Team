@@ -125,10 +125,27 @@ background: #F6F4F1;
 .swiper-button-next svg {
 width: 24px;
     height: 24px;
-    stroke: currentColor;
-    fill: none;
+    fill: #02060a;
+    stroke: none;
 }
 
+.swiper-button-prev use,
+.swiper-button-next use {
+    fill: inherit;
+}
+
+.swiper-button-prev-custom svg,
+.swiper-button-next-custom svg {
+    width: 24px;
+    height: 24px;
+    fill: #02060a;
+    stroke: none;
+}
+
+.swiper-button-prev-custom use,
+.swiper-button-next-custom use {
+    fill: inherit;
+}
 
 .swiper-pagination {
     position: relative;
@@ -163,6 +180,12 @@ align-items: center;
 .swiper-button-prev.swiper-button-prev-custom,
 .swiper-button-next.swiper-button-next-custom {
     display: none;
+}
+
+.swiper-button-next svg,
+.swiper-button-next-custom svg {
+    transform: scale(0.667);
+    transform-origin: center;
 }
 
 @media (min-width: 768px) {
