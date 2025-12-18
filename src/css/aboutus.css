@@ -272,7 +272,7 @@
 
 @media (min-width: 1280px) {
   .section-about {
-    padding: 80px 64px;
+    padding: 0px 64px;
   }
 
   .about-container {
