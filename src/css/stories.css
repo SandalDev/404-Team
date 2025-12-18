@@ -1,92 +1,116 @@
-.swiper-button-prev,
- .swiper-button-next,
- .swiper-pagination {
-position: static !important;
+ .swiper-but .swiper-button-prev,
+ .swiper-but .swiper-button-next,
+ .swiper-but .swiper-pagination {
+  position: static !important;
 }
 
 .controls {
   display: flex;
   justify-content: space-between;
+  flex-direction: row-reverse;
   margin-top: 20px;
+  width: 100%;
+  position: relative;
 }
-.swiper-pagination {
-max-width: max-content;
-}
-.swiper-but{
-    display: flex;
-}
-.swiper {
 
+.swiper-pagination {
+  max-width: max-content;
 }
 
 .swiper-slide {
- 
 }
+
+
+.swiper-pagination-bullets-dynamic {
+  left: 0;
+}
+
+.swiper-but {
+  display: flex;
+  gap: 8px;
+}
+
+.swiper {}
+
+.swiper-slide {}
 
 .swiper-button-prev,
-.swiper-button-next {
+.swiper-button-next {}
+
+.swiper-pagination-bullet {}
+
+.swiper-button-prev svg,
+.swiper-button-nextt svg {
+  width: 16px !important;
+  height: 16px !important;
+  fill: rgba(2, 6, 10, 1) !important;
 }
 
+/* Базовий стан */
 .swiper-pagination-bullet {
-
-}
-.swiper-button-prev svg, .swiper-button-next svg {
-width:  16px !important;
-height: 16px !important;
-fill: rgba(2, 6, 10, 1)!important;
-    }
-  /* Базовий стан */
-.swiper-pagination-bullet {
-  width: 6px;
-  height: 6px;
-  background-color: #999;
-  opacity: 0.4;
-  transition:
-    width 0.25s ease,
-    height 0.25s ease,
-    opacity 0.25s ease;
+  width: 4px;
+  height: 4px;
+  cursor: pointer;
+  background: #cfcfcf;
+  opacity: 1;
+  border-radius: 50%;
 }
 
 /* Активна */
 .swiper-pagination-bullet-active {
+  background: #02060A !important;
   width: 8px;
   height: 8px;
-  opacity: 1;
-  background-color: #000 !important;
+  border-radius: 50%;
 }
 
 /* 1-й рівень зліва / справа */
 .swiper-pagination-bullet-active-prev,
 .swiper-pagination-bullet-active-next {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   opacity: 0.7;
+  border-radius: 50%;
 }
 
 /* 2-й рівень зліва / справа */
 .swiper-pagination-bullet-active-prev-prev,
 .swiper-pagination-bullet-active-next-next {
-  width: 6px;
-  height: 6px;
-  opacity: 0.3;
+  width: 4px;
+  height: 4px;
+  opacity: 0.5;
+  border-radius: 50%;
 }
-.feedback{
+
+
+.feedback {
   max-width: 336px;
   max-height: 346px;
 }
-.swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-horizontal.swiper-pagination-bullets {
-transform: none !important;
+
+.swiper-horizontal>.swiper-pagination-bullets,
+.swiper-pagination-horizontal.swiper-pagination-bullets {
+  transform: none !important;
 }
-.feedback-text{
+
+.feedback-text {
   font-weight: 400;
-font-size: 18px;
-line-height: 1.5;
-color: #02060a;
-font-family: "IBM Plex Sans", sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  color: #02060a;
+  font-family: "IBM Plex Sans", sans-serif;
 }
-.feedback-author{
-font-weight: 600;
-font-size: 14px;
-line-height: 1.5;
-color: #02060a;
+
+.feedback-author {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #02060a;
+}
+
+.stories {
+  color: #02060a;
+  position: relative;
+  text-align: center;
+  margin: 0 auto;
 }
