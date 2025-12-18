@@ -1,0 +1,175 @@
+.section-hero {
+    position: relative;
+    width: 100%;
+    min-height: 544px;
+
+    background-image: url("../img/hero/hero-mob-min.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* overlay */
+.section-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+/* container — fluid on mobile */
+.hero-container {
+    position: relative;
+    z-index: 1;
+
+    padding: 64px 20px;
+}
+
+/* content */
+.hero-content {
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+
+/* title — FIXED WIDTH to stabilize wrapping */
+.hero-title {
+    max-width: 320px;
+    /* 🔑 ГОЛОВНИЙ ФІКС */
+
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+}
+
+/* mobile line break */
+.hero-br {
+    display: block;
+}
+
+/* text */
+.hero-text {
+    max-width: 335px;
+
+    font-size: 16px;
+    line-height: 1.5;
+    opacity: 0.9;
+    margin-bottom: 32px;
+}
+
+/* button */
+.hero-anchor-link {
+    align-self: flex-start;
+
+    padding: 12px 18px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #ffffff;
+    text-decoration: none;
+
+    background-color: #88765c;
+    border-radius: 12px;
+}
+
+/* Hover */
+.hero-anchor-link:hover {
+  background-color: #c3b49d;
+  border-color: rgba(2, 6, 10, 0.15);
+}
+
+/* Focus */
+.hero-anchor-link:focus-visible {
+  background-color: #c3b49d;
+  border-color: #02060a;
+  outline: none;
+}
+
+/* Active */
+.hero-anchor-link:active {
+  background-color: #443b2e;
+  border-color: #332c22;
+}
+
+/* Disabled */
+.hero-anchor-link:disabled {
+  background-color: #f2f2f2;
+  border-color: rgba(2, 6, 10, 0.1);
+  color: #b3b4b5;
+  cursor: not-allowed;
+}
+
+/* ================================================= */
+/* RETINA MOBILE */
+/* ================================================= */
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+    .section-hero {
+        background-image: url("../img/hero/hero-mob@2x-min.jpg");
+    }
+}
+
+/* ================================================= */
+/* TABLET — 768 */
+/* ================================================= */
+
+@media (min-width: 768px) {
+    .section-hero {
+        min-height: 640px;
+        background-image: url("../img/hero/hero-tab-min.jpg");
+    }
+
+    .hero-container {
+        max-width: 768px;
+        padding: 64px 32px;
+    }
+
+    .hero-content {
+        max-width: 622px;
+    }
+
+    /* 🔑 знімаємо mobile-обмеження */
+    .hero-title {
+        max-width: none;
+    }
+
+    .hero-br {
+        display: none;
+    }
+
+    .hero-text {
+        max-width: 500px;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 1.5;
+    }
+}
+
+
+@media (min-width: 1440px) {
+    .section-hero {
+        min-height: 720px;
+        background-image: url("../img/hero/hero-desk-min.jpg");
+    }
+
+    .hero-container {
+        max-width: 1440px;
+        padding: 100px 80px;
+    }
+
+    .hero-title {
+        font-size: 56px;
+        width: 622px;
+        height: 201px;
+    }
+        .hero-text {
+            max-width: 512px;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        
+}
