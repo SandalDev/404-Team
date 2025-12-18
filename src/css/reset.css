@@ -1,9 +1,10 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+html {
+    scroll-behavior: smooth;
 }
 
+main {
+    padding-top: 72px;
+}
 
 body {
   margin: 0;
