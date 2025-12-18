@@ -1,8 +1,10 @@
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
+.header-section,
+.header-section *,
+.header-section *::before,
+.header-section *::after {
+  box-sizing: border-box;
 }
+
 
 .logo {
     display: flex;
