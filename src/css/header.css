@@ -30,6 +30,9 @@
         left: 0; 
         right: 0; 
         z-index: 999;
+            width: 100vw;
+    max-width: none;
+    margin: 0;
 }
 
 .burger-btn {
@@ -51,7 +54,6 @@
     .header-container {
         justify-content: flex-start;
         padding: 0 64px;
-        max-width: 1440px;
     }
 
     .header-nav {

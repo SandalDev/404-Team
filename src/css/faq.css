@@ -21,7 +21,6 @@
     font-size: 16px;
     line-height: 1.5;
     color: #02060a;
-    padding: 8px 32px 8px 0;
 }
 
 
@@ -93,6 +92,7 @@
     font-size: 14px;
     line-height: 1.5;
     color: #02060a;
+    padding: 0;
 }
 
 
