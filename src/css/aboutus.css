@@ -166,9 +166,7 @@
 }
 
 @media (min-width: 768px) {
-  .section-about {
-    padding: 64px 32px;
-  }
+
 
   .about-container {
     max-width: 768px;
