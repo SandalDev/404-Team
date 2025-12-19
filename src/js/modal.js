@@ -1,34 +1,27 @@
-import axios from 'axios';
-import Swal from 'sweetalert2';
+/* ============================= */
+/* ELEMENTS */
+/* ============================= */
 
 const backdrop = document.querySelector('[data-order-modal]');
+const modal = document.querySelector('.order-modal');
 const closeBtn = document.querySelector('[data-order-close]');
-const petName = document.querySelector('.order-modal-pet-name');
+const form = document.querySelector('[data-order-form]');
 
-/* =========================
-   SUBMIT ELEMENTS
-   ========================= */
+/* ============================= */
+/* GUARD */
+/* ============================= */
 
-const form = backdrop?.querySelector('[data-order-form]');
-const submitBtn = form?.querySelector('button[type="submit"]');
-const loader = backdrop?.querySelector('.order-loader');
+if (!backdrop || !modal || !closeBtn || !form) {
+  console.warn('Order modal: required elements not found');
+}
 
-/* =========================
-   OPEN / CLOSE
-   ========================= */
+/* ============================= */
+/* OPEN / CLOSE */
+/* ============================= */
 
-export function openOrderModal() {
+function openOrderModal() {
   backdrop.classList.remove('is-hidden');
   document.body.style.overflow = 'hidden';
-
-  // гарантія чистого UI при відкритті
-  loader?.classList.add('is-hidden');
-  if (submitBtn) submitBtn.disabled = false;
-
-  const animal = JSON.parse(localStorage.getItem('animal'));
-  if (animal && petName) {
-    petName.textContent = `Ви хочете забрати: ${animal.name}`;
-  }
 }
 
 function closeOrderModal() {
@@ -36,67 +29,76 @@ function closeOrderModal() {
   document.body.style.overflow = '';
 }
 
-closeBtn?.addEventListener('click', closeOrderModal);
+/* ============================= */
+/* EVENTS — OPEN (DELEGATION) */
+/* ============================= */
 
-backdrop?.addEventListener('click', e => {
-  if (e.target === backdrop) closeOrderModal();
+document.addEventListener('click', event => {
+  const openBtn = event.target.closest('[data-order-open]');
+  if (!openBtn) return;
+
+  // якщо кнопка всередині modalpet — він уже відкритий
+  // order modal відкривається поверх або після закриття pet modal
+  openOrderModal();
 });
 
-window.addEventListener('keydown', e => {
-  if (
-    e.code === 'Escape' &&
-    backdrop &&
-    !backdrop.classList.contains('is-hidden') &&
-    !Swal.isVisible()
-  ) {
+/* ============================= */
+/* EVENTS — CLOSE */
+/* ============================= */
+
+closeBtn.addEventListener('click', closeOrderModal);
+
+// Закриття по кліку на бекдроп
+backdrop.addEventListener('click', event => {
+  if (event.target === backdrop) {
     closeOrderModal();
   }
 });
 
-/* =========================
-   SUBMIT LOGIC
-   ========================= */
+// Esc — глобально
+document.addEventListener('keydown', event => {
+  if (event.key !== 'Escape') return;
+  if (backdrop.classList.contains('is-hidden')) return;
 
-if (form && submitBtn && loader) {
-  form.addEventListener('submit', async event => {
-    event.preventDefault();
+  closeOrderModal();
+});
 
-    const payload = {
-      name: form.elements.name.value.trim(),
-      phone: form.elements.phone.value.trim(),
-      comment: form.elements.comment.value.trim(),
-    };
+/* ============================= */
+/* FORM SUBMIT */
+/* ============================= */
 
-    // UI start
-    loader.classList.remove('is-hidden');
-    submitBtn.disabled = true;
+form.addEventListener('submit', async event => {
+  event.preventDefault();
 
-    try {
-      await axios.post(
-        'https://paw-hut.b.goit.study/api/orders',
-        payload
-      );
+  const formData = new FormData(form);
 
-      await Swal.fire({
-        icon: 'success',
-        title: 'Готово!',
-        text: 'Заявку успішно надіслано',
-        confirmButtonText: 'Добре',
-      });
+  const data = {
+    name: formData.get('name')?.trim(),
+    phone: formData.get('phone')?.trim(),
+    comment: formData.get('comment')?.trim() || '',
+    animal: localStorage.getItem('animal') || null,
+  };
 
-      form.reset();
-      closeOrderModal();
+  try {
+    const response = await fetch('/orders3', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
 
-    } catch (error) {
-      await Swal.fire({
-        icon: 'error',
-        title: 'Помилка',
-        text: 'Не вдалося надіслати заявку. Спробуйте ще раз.',
-      });
-    } finally {
-      // UI end
-      loader.classList.add('is-hidden');
-      submitBtn.disabled = false;
+    if (!response.ok) {
+      throw new Error(`HTTP error ${response.status}`);
     }
-  });
-}
+
+    alert('Заявку надіслано. Ми звʼяжемося з вами найближчим часом.');
+
+    form.reset();
+    closeOrderModal();
+
+  } catch (error) {
+    console.error('Order submit error:', error);
+    alert('Помилка. Спробуйте ще раз пізніше.');
+  }
+});

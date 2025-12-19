@@ -2,66 +2,61 @@
 <div class="backdrop is-hidden" data-order-modal>
   <div class="order-modal" role="dialog" aria-modal="true">
 
+    <!-- CLOSE BUTTON -->
     <button
       type="button"
       class="order-modal__close"
       data-order-close
       aria-label="Закрити"
     >
-      <svg
-        class="order-modal__close-icon"
-        width="24"
-        height="24"
-        aria-hidden="true"
-      >
-        <use href="../img/icon.svg#icon-close"></use>
+      <svg width="24" height="24" aria-hidden="true">
+        <use href="../img/icon.svg.svg#icon-close"></use>
       </svg>
     </button>
 
     <div class="order-modal__inner">
       <h2 class="order-modal__title">
-        Залишіть<br />
-        заявку на<br />
-        знайомство
+        Залишіть заявку на знайомство
       </h2>
 
       <form class="order-form" data-order-form>
-        <label>
+        <!-- NAME -->
+        <label class="order-form__field">
           <span>Імʼя*</span>
           <input
             type="text"
             name="name"
             placeholder="Андрій"
-            autocomplete="name"
             required
           />
         </label>
 
-        <label>
+        <!-- PHONE -->
+        <label class="order-form__field">
           <span>Телефон*</span>
           <input
             type="tel"
             name="phone"
             placeholder="+38 (095) 555 99 22"
-            autocomplete="tel"
             required
           />
         </label>
 
-        <label>
+        <!-- COMMENT -->
+        <label class="order-form__field">
           <span>Коментар</span>
           <textarea
             name="comment"
             placeholder="Напишіть ваш коментар"
-            autocomplete="off"
           ></textarea>
         </label>
 
-        <!-- LOADER -->
-        <span class="order-loader is-hidden" aria-hidden="true"></span>
-
-        <button type="submit">Надіслати</button>
+        <!-- SUBMIT -->
+        <button type="submit" class="order-form__submit">
+          Надіслати
+        </button>
       </form>
     </div>
+
   </div>
 </div>
