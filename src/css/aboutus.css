@@ -3,6 +3,10 @@
   background: #F6F4F1;
 }
 
+.section-about>*{
+  box-sizing: border-box;
+}
+
 .about-container {
   max-width: 335px;
   margin: 0 auto;
@@ -65,7 +69,6 @@
 .about-text {
   position: absolute;
   bottom: 20px;
-  right: 20px;
   color: #fff;
   font-size: 16px;
   line-height: 150%;
@@ -191,7 +194,8 @@ margin: 0 auto;
     text-align: center;
     color: var(--color-scheme-1-text);
     margin: 0 auto;
-    width: 768px;
+    
+    width: 370px;
     padding-bottom: 0;
   }
 
@@ -222,8 +226,6 @@ margin: 0 auto;
     line-height: 150%;
     color: #F6F4F1;
     width: 548px;
-    padding-right: 104px;
-    padding-left: 32px;
   }
 
   .section-about .swiper-pagination {
@@ -271,11 +273,16 @@ margin: 0 auto;
       position: absolute !important;
   }
   .swiper-button-prev.swiper-button-prev-custom {
-    left: 10px;
+    left: -15px;
   }
 
   .swiper-button-next.swiper-button-next-custom {
-    right: 10px;
+    right: -15px;
+  }
+
+  .section-about {
+    width: 704px;
+    margin: 0 auto;
   }
 }
 
@@ -295,7 +302,7 @@ margin: 0 auto;
     letter-spacing: -0.01em;
     color: var(--color-scheme-1-text);
     padding-bottom: 24px;
-    max-width: 768px;
+    width: 1200px;
     margin: 0 auto;
     text-align: center;
   }
@@ -325,7 +332,6 @@ margin: 0 auto;
     color: #F6F4F1;
     width: 548px;
     height: 108px;
-    padding-right: 700px;
   }
 
   .section-about .swiper-pagination {
@@ -347,6 +353,11 @@ margin: 0 auto;
   .swiper-button-next.swiper-button-next-custom {
     right: -13px;
     transform: translateY(-50%);
+  }
+
+  .section-about {
+    width: 1312px;
+    margin: 0 auto;
   }
 }
 
