@@ -98,5 +98,9 @@ export {
     hideLoader,
     categoriesTemplate,
     petsTemplate
+<<<<<<< Updated upstream
 };
 
+=======
+};
+>>>>>>> Stashed changes

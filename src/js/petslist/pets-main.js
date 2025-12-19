@@ -170,6 +170,3 @@ refs.categories.addEventListener("click", async e => {
   handleShowMoreBtn(currentPage, totalPages);
   hideLoader();
 });
-
-
-
