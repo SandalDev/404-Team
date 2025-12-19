@@ -4,6 +4,7 @@
 
 const backdrop = document.querySelector('[data-order-modal]');
 const modal = document.querySelector('.order-modal');
+const openBtns = document.querySelectorAll('[data-order-open]');
 const closeBtn = document.querySelector('[data-order-close]');
 const form = document.querySelector('[data-order-form]');
 
@@ -30,16 +31,11 @@ function closeOrderModal() {
 }
 
 /* ============================= */
-/* EVENTS — OPEN (DELEGATION) */
+/* EVENTS — OPEN */
 /* ============================= */
 
-document.addEventListener('click', event => {
-  const openBtn = event.target.closest('[data-order-open]');
-  if (!openBtn) return;
-
-  // якщо кнопка всередині modalpet — він уже відкритий
-  // order modal відкривається поверх або після закриття pet modal
-  openOrderModal();
+openBtns.forEach(btn => {
+  btn.addEventListener('click', openOrderModal);
 });
 
 /* ============================= */
@@ -55,7 +51,7 @@ backdrop.addEventListener('click', event => {
   }
 });
 
-// Esc — глобально
+// Esc — ГЛОБАЛЬНО, БЕЗ ДОДАВАННЯ / ЗНЯТТЯ
 document.addEventListener('keydown', event => {
   if (event.key !== 'Escape') return;
   if (backdrop.classList.contains('is-hidden')) return;
@@ -92,6 +88,7 @@ form.addEventListener('submit', async event => {
       throw new Error(`HTTP error ${response.status}`);
     }
 
+    // SUCCESS
     alert('Заявку надіслано. Ми звʼяжемося з вами найближчим часом.');
 
     form.reset();
@@ -99,6 +96,7 @@ form.addEventListener('submit', async event => {
 
   } catch (error) {
     console.error('Order submit error:', error);
+
     alert('Помилка. Спробуйте ще раз пізніше.');
   }
 });
