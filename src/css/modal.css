@@ -1,0 +1,285 @@
+:root {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: #0b0803;
+  background-color: #f6f4f1;
+}
+
+h1,
+h2 {
+  font-family: 'Aboreto', sans-serif;
+}
+
+h2 {
+  line-height: 1.2;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* =========================
+   BACKDROP
+   ========================= */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transition: opacity 200ms ease, visibility 200ms ease;
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* =========================
+   MODAL — MOBILE 320+
+   ========================= */
+.order-modal {
+  position: relative;
+  width: 100%;
+  max-width: 335px;
+
+  background: #f6f4f1;
+  border-radius: 8px;
+
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+
+  transform: scale(1);
+  transition: transform 200ms ease;
+}
+
+.backdrop.is-hidden .order-modal {
+  transform: scale(0.96);
+}
+
+/* =========================
+   INNER
+   ========================= */
+.order-modal__inner {
+  padding: 64px 20px;
+}
+
+/* =========================
+   CLOSE (НЕ ЧІПАЄМО)
+   ========================= */
+.order-modal__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;     
+  width: auto;
+  height: auto;
+
+  cursor: pointer;
+}
+
+.order-modal__close-icon {
+  width: 24px;
+  height: 24px;
+  color: #0b0803;
+}
+
+.order-modal__close:hover .order-modal__close-icon {
+  color: #8b7355;
+}
+
+.order-modal__close:focus-visible {
+  outline: 2px solid rgba(139, 115, 85, 0.4);
+  outline-offset: 2px;
+}
+
+/* =========================
+   TITLE
+   ========================= */
+.order-modal__title {
+  margin: 0 auto 48px;
+  max-width: 295px;
+
+  color: #02060a;
+  font-family: 'Aboreto', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+
+/* =========================
+   FORM
+   ========================= */
+.order-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.order-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.order-form span {
+  margin-bottom: 8px;
+
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  color: #02060a;
+}
+
+.order-form input,
+.order-form textarea {
+  width: 100%;
+  padding: 8px 12px;
+
+  border: 1px solid transparent;
+  border-radius: 12px;
+
+  background-color: rgba(2, 6, 10, 0.05);
+
+  font-size: 14px;
+}
+
+.order-form input {
+  height: 37px;
+}
+
+.order-form textarea {
+  height: 180px;
+  resize: none;
+}
+
+/* =========================
+   PLACEHOLDER
+   ========================= */
+.order-form input::placeholder,
+.order-form textarea::placeholder {
+  color: rgba(11, 8, 3, 0.4);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.order-form input::-moz-placeholder,
+.order-form textarea::-moz-placeholder {
+  color: rgba(11, 8, 3, 0.4);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* =========================
+   BUTTON
+   ========================= */
+.order-form button {
+  margin-top: 24px;
+  height: 45px;
+
+  padding: 12px 24px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #8b7355;
+
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.order-form button:hover {
+  opacity: 0.9;
+}
+
+/* =========================
+   TABLET 768+
+   ========================= */
+@media screen and (min-width: 768px) {
+  .order-modal {
+    max-width: 720px;
+  }
+
+  .order-modal__inner {
+    padding: 64px 32px;
+    max-width: 768px;
+  }
+
+  .order-modal__title {
+    max-width: none;
+    white-space: nowrap;
+  }
+
+  .order-modal__title br {
+    display: none;
+  }
+
+  .order-form button {
+    align-self: center;
+    width: 240px;
+  }
+}
+
+/* =========================
+   DESKTOP 1440+
+   ========================= */
+@media screen and (min-width: 1440px) {
+  .order-modal {
+    max-width: 768px;
+  }
+
+  .order-modal__inner {
+    padding: 64px;
+  }
+
+  .order-modal__title {
+    font-size: 48px;
+    max-width: 640px;
+    white-space: normal;
+  }
+
+  .order-form span {
+    font-size: 16px;
+  }
+
+  .order-form input,
+  .order-form textarea {
+    font-size: 16px;
+  }
+
+  .order-form input {
+    height: 40px;
+  }
+
+  .order-form textarea {
+    max-width: 640px;
+  }
+
+  .order-form button {
+    height: 48px;
+    padding: 14px 32px;
+    font-size: 16px;
+  }
+}
