@@ -262,7 +262,11 @@
      return pets.map(petTemplate).join('');
  }
 
+<<<<<<< Updated upstream
  export { petsData };
 
   
 
+=======
+  
+>>>>>>> Stashed changes
