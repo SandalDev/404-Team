@@ -50,32 +50,45 @@ async function getAllPetsList() {
 
 function renderPetModal(pet) {
     return `<img src="${pet.image}" class="modalpet-img" alt="${pet.shortDescription}" />
+    <div class="pet-content-wrapper">
+    <div class="pet-main-details-container">
 
     <p class="pet-type-paragraph">${pet.species}</p>
-
     <h3 class="modalpet-name">${pet.name}</h3>
     <div class="modal-age-gender">
       <p class="modal-pet-age">${pet.age}</p>
       <p class="modal-pet-gender">${pet.gender}</p>
     </div>
+    </div>
+    
+
+    <div class="pet-details-container">
     <span class="modal-descr-word">Опис:</span>
     <p class="modalpet-desc">${pet.description}</p>
+    </div>
 
+    <div class="pet-details-container">
     <span class="modal-descr-word">Здоров’я:</span>
     <p class="modalpet-health-desc">${pet.healthStatus}</p>
+    </div>
 
+    <div class="pet-details-container">
     <span class="modal-descr-word">Поведінка:</span>
-    <p class="modalpet-behaviour-desc">${pet.behavior}</p>`
+    <p class="modalpet-behaviour-desc">${pet.behavior}</p>
+    </div>
+    </div>`
 };
 
 function openModal() {
   refs.backdrop.classList.remove('is-hidden');
   window.addEventListener('keydown', handleCloseModal);
+  document.body.style.overflow = 'hidden';
 };
 
 function closeModal() {
   refs.backdrop.classList.add('is-hidden');
   window.removeEventListener('keydown', handleCloseModal);
+  document.body.style.overflow = '';
 };
 
 
