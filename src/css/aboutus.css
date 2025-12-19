@@ -3,6 +3,10 @@
   background: #F6F4F1;
 }
 
+.section-about>*{
+  box-sizing: border-box;
+}
+
 .about-container {
   max-width: 335px;
   margin: 0 auto;
@@ -65,7 +69,6 @@
 .about-text {
   position: absolute;
   bottom: 20px;
-  right: 20px;
   color: #fff;
   font-size: 16px;
   line-height: 150%;
@@ -223,8 +226,6 @@ margin: 0 auto;
     line-height: 150%;
     color: #F6F4F1;
     width: 548px;
-    padding-right: 104px;
-    padding-left: 32px;
   }
 
   .section-about .swiper-pagination {
@@ -331,7 +332,6 @@ margin: 0 auto;
     color: #F6F4F1;
     width: 548px;
     height: 108px;
-    padding-right: 700px;
   }
 
   .section-about .swiper-pagination {

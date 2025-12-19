@@ -1,123 +1,71 @@
-// import axios from "axios";
-// import iziToast from "izitoast";
-// import "izitoast/dist/css/iziToast.min.css";
-// // import { getCategoriesList } from './petslist/pets-api';
-// // import { getPetsByCategory } from './petslist/pets-api';
-// // import { getPetsList } from './petslist/pets-api';
-// // import { limit } from './petslist/pets-api';
+ import axios from "axios";
+ import iziToast from "izitoast";
+ import "izitoast/dist/css/iziToast.min.css";
+ import { getCategoriesList } from './petslist/pets-api';
+ import { getPetsByCategory } from './petslist/pets-api';
+ import { getPetsList } from './petslist/pets-api';
 
 
-// const refs = {
-//     categories: document.querySelector('.pets-categories'),
-//     petsList: document.querySelector('.pets-list'),
-//     showMore: document.querySelector('.show-more'),
-//     loader: document.querySelector('.js-loader') 
-// }
+ const refs = {
+     categories: document.querySelector('.pets-categories'),
+     petsList: document.querySelector('.pets-list'),
+     showMore: document.querySelector('.show-more'),
+     loader: document.querySelector('.js-loader') 
+ }
 
-// let currentPage = 1; 
-// let totalPages;
-// let mode = 'all';
-// let limit;
-// let categoryId;
-
-// async function getCategoriesList() {
-//     const url = 'https://paw-hut.b.goit.study/api/categories';
-
-//     const res = await axios.get(url);
-//     console.log(res.data);
-//     return res.data;
-// };
-
-// async function getPetsList(currentPage = 1) {
-//     const width = window.innerWidth;
-//     limit = width < 1440 ? 8 : 9;
-//     const url = 'https://paw-hut.b.goit.study/api/animals';
-
-//     const params = {
-//         page: currentPage,
-//         limit,
-//     }
-
-//     try {
-//         const res = await axios.get(url, { params });
-//         console.log(res.data);
-//         return res.data;
-//       } catch (error) {
-//         console.error('Error:', error);
-//         return []; 
-//       }
-// };
+ let currentPage = 1; 
+ let totalPages;
+ let mode = 'all';
+ let limit;
+ let categoryId;
 
 
-// async function getPetsByCategory(categoryId, currentPage = 1) {
-//     const width = window.innerWidth;
-//     limit = width < 1440 ? 8 : 9;
-//     const url = 'https://paw-hut.b.goit.study/api/animals';
+ function renderMore(pets) {
+     const markup = petsTemplate(pets);
+     refs.petsList.insertAdjacentHTML('beforeend', markup);
+ }
 
-//     const params = {
-//         page: currentPage,
-//         limit,
-//         categoryId,
-//     }
+ async function loadMorePets() {
+     currentPage++;
+     showLoader();
 
-//     try {
-//         const res = await axios.get(url, { params });
-//         console.log(res.data);
-//         return res.data;
-//       } catch (error) {
-//         console.error('Error:', error);
-//         return []; 
-//       }
-// };
+     if(mode === 'all') {
+         try{
+             const result = await getPetsList(currentPage); 
+             renderMore(result.animals);
+             totalPages = Math.ceil(result.totalItems / limit);
+             handleShowMoreBtn();
+         } catch {
+             iziToast.show({
+                 message: `Something went wrong. Please try again later.`,
+                 color: 'red',
+                 position: 'topRight',
+                 messageSize: '20',
+                 timeout: '4000',
+                 theme: 'dark',
+               });
+         }
+     } else if(mode === 'category') {
+         try{
+             const result = await getPetsByCategory(categoryId, currentPage);
+             renderMore(result.animals);
+             totalPages = Math.ceil(result.totalItems / limit);
+             handleShowMoreBtn();
+         } catch {
+             iziToast.show({
+                 message: `Something went wrong. Please try again later.`,
+                 color: 'red',
+                 position: 'topRight',
+                 messageSize: '20',
+                 timeout: '4000',
+                 theme: 'dark',
+               });     
+     }
+     hideLoader();
+     }
+ }
 
-
-
-// function renderMore(pets) {
-//     const markup = petsTemplate(pets);
-//     refs.petsList.insertAdjacentHTML('beforeend', markup);
-// }
-
-// async function loadMorePets() {
-//     currentPage++;
-//     showLoader();
-
-//     if(mode === 'all') {
-//         try{
-//             const result = await getPetsList(currentPage); 
-//             renderMore(result.animals);
-//             totalPages = Math.ceil(result.totalItems / limit);
-//             handleShowMoreBtn();
-//         } catch {
-//             iziToast.show({
-//                 message: `Something went wrong. Please try again later.`,
-//                 color: 'red',
-//                 position: 'topRight',
-//                 messageSize: '20',
-//                 timeout: '4000',
-//                 theme: 'dark',
-//               });
-//         }
-//     } else if(mode === 'category') {
-//         try{
-//             const result = await getPetsByCategory(categoryId, currentPage);
-//             renderMore(result.animals);
-//             totalPages = Math.ceil(result.totalItems / limit);
-//             handleShowMoreBtn();
-//         } catch {
-//             iziToast.show({
-//                 message: `Something went wrong. Please try again later.`,
-//                 color: 'red',
-//                 position: 'topRight',
-//                 messageSize: '20',
-//                 timeout: '4000',
-//                 theme: 'dark',
-//               });     
-//     }
-//     hideLoader();
-//     }
-// }
-
-// refs.showMore.addEventListener('click', loadMorePets);
+ refs.showMore.addEventListener('click', loadMorePets);
 
 
 
@@ -125,105 +73,105 @@
 
 
 
-// document.addEventListener('DOMContentLoaded', async e => {
-//     clearGallery();
-//     showLoader();
-//     try{
-//         const res = await getCategoriesList();
-//         const getLastDigit = item => Number(item._id.at(-1));
-//         res.sort((a, b) => getLastDigit(a) - getLastDigit(b));
-//         res.unshift({_id: 0, name: 'Всі'});
+ document.addEventListener('DOMContentLoaded', async e => {
+     clearGallery();
+     showLoader();
+     try{
+         const res = await getCategoriesList();
+         const getLastDigit = item => Number(item._id.at(-1));
+         res.sort((a, b) => getLastDigit(a) - getLastDigit(b));
+         res.unshift({_id: 0, name: 'Всі'});
       
-//         const markup = categoriesTemplate(res);
-//         refs.categories.innerHTML = markup;
-//         const elem = refs.categories.firstElementChild;
-//         const allElem = elem.firstElementChild;
-//         allElem.classList.add('active');
-//     } catch {
-//         iziToast.show({
-//             message: `Something went wrong. Please try again later.`,
-//             color: 'red',
-//             position: 'topRight',
-//             messageSize: '20',
-//             timeout: '4000',
-//             theme: 'dark',
-//           }); 
-//     }
+         const markup = categoriesTemplate(res);
+         refs.categories.innerHTML = markup;
+         const elem = refs.categories.firstElementChild;
+         const allElem = elem.firstElementChild;
+         allElem.classList.add('active');
+     } catch {
+         iziToast.show({
+             message: `Something went wrong. Please try again later.`,
+             color: 'red',
+             position: 'topRight',
+             messageSize: '20',
+             timeout: '4000',
+             theme: 'dark',
+           }); 
+     }
 
-//     mode = 'all';
-//     currentPage = 1;
-//     try{
-//         const petsResult = await getPetsList();
-//         const petsMarkup = petsTemplate(petsResult.animals);
-//         refs.petsList.innerHTML = petsMarkup;
-//         totalPages = Math.ceil(petsResult.totalItems / limit);
-//         console.log(totalPages);
-//         hideLoader();
-//         handleShowMoreBtn();
-//     } catch {
-//         iziToast.show({
-//             message: `Something went wrong. Please try again later.`,
-//             color: 'red',
-//             position: 'topRight',
-//             messageSize: '20',
-//             timeout: '4000',
-//             theme: 'dark',
-//           }); 
-//     }
+     mode = 'all';
+     currentPage = 1;
+     try{
+         const petsResult = await getPetsList();
+         const petsMarkup = petsTemplate(petsResult.animals);
+         refs.petsList.innerHTML = petsMarkup;
+         totalPages = Math.ceil(petsResult.totalItems / limit);
+         console.log(totalPages);
+         hideLoader();
+         handleShowMoreBtn();
+     } catch {
+         iziToast.show({
+             message: `Something went wrong. Please try again later.`,
+             color: 'red',
+             position: 'topRight',
+             messageSize: '20',
+             timeout: '4000',
+             theme: 'dark',
+           }); 
+     }
 
-// }
-// )
+ }
+ )
 
-// refs.categories.addEventListener('click', async e => {
-//     clearGallery();
-//      showLoader();
-//     mode = 'category';
-//     currentPage = 1;
-//     const active = document.querySelector('.active');
-//     active.classList.remove('active');
-//     console.log(active);
-//     const category = e.target.closest('button');
-//     category.classList.add('active');
-//     const id = category.dataset.id;
-//     categoryId = id;
-//     if(id === '0') {
-//         try{
-//             const res = await getPetsList(currentPage);
-//             const markup = petsTemplate(res.animals);
-//             totalPages = Math.ceil(res.totalItems / limit);
-//             refs.petsList.innerHTML = markup;
-//             handleShowMoreBtn();
-//         } catch {
-//             iziToast.show({
-//                 message: `Something went wrong. Please try again later.`,
-//                 color: 'red',
-//                 position: 'topRight',
-//                 messageSize: '20',
-//                 timeout: '4000',
-//                 theme: 'dark',
-//               }); 
-//         }
+ refs.categories.addEventListener('click', async e => {
+     clearGallery();
+      showLoader();
+     mode = 'category';
+     currentPage = 1;
+     const active = document.querySelector('.active');
+     active.classList.remove('active');
+     console.log(active);
+     const category = e.target.closest('button');
+     category.classList.add('active');
+     const id = category.dataset.id;
+     categoryId = id;
+     if(id === '0') {
+         try{
+             const res = await getPetsList(currentPage);
+             const markup = petsTemplate(res.animals);
+             totalPages = Math.ceil(res.totalItems / limit);
+             refs.petsList.innerHTML = markup;
+             handleShowMoreBtn();
+         } catch {
+             iziToast.show({
+                 message: `Something went wrong. Please try again later.`,
+                 color: 'red',
+                 position: 'topRight',
+                 messageSize: '20',
+                 timeout: '4000',
+                 theme: 'dark',
+               }); 
+         }
       
-//     } else {
-//         try{
-//             const res = await getPetsByCategory(id, currentPage);
-//             const markup = petsTemplate(res.animals);
-//             totalPages = Math.ceil(res.totalItems / limit);
-//             refs.petsList.innerHTML = markup;
-//         } catch {
-//             iziToast.show({
-//                 message: `Something went wrong. Please try again later.`,
-//                 color: 'red',
-//                 position: 'topRight',
-//                 messageSize: '20',
-//                 timeout: '4000',
-//                 theme: 'dark',
-//               }); 
-//         }
-//     };
-//     handleShowMoreBtn();
-//     hideLoader();
-// });
+     } else {
+         try{
+             const res = await getPetsByCategory(id, currentPage);
+             const markup = petsTemplate(res.animals);
+             totalPages = Math.ceil(res.totalItems / limit);
+             refs.petsList.innerHTML = markup;
+         } catch {
+             iziToast.show({
+                 message: `Something went wrong. Please try again later.`,
+                 color: 'red',
+                 position: 'topRight',
+                 messageSize: '20',
+                 timeout: '4000',
+                 theme: 'dark',
+               }); 
+         }
+     };
+     handleShowMoreBtn();
+     hideLoader();
+ });
 
 
 
@@ -231,82 +179,82 @@
 
 
 
-// function showShowMoreBtn() {
-//     refs.showMore.classList.remove('is-hidden');
-// };
+ function showShowMoreBtn() {
+     refs.showMore.classList.remove('is-hidden');
+ };
 
-// function hideShowMoreBtn() {
-//     refs.showMore.classList.add('is-hidden');
-// };
+ function hideShowMoreBtn() {
+     refs.showMore.classList.add('is-hidden');
+ };
 
-// function handleShowMoreBtn() {
-//     if(currentPage < totalPages) {
-//         showShowMoreBtn();
-//     } else {
-//         hideShowMoreBtn();
-//     }
+ function handleShowMoreBtn() {
+     if(currentPage < totalPages) {
+         showShowMoreBtn();
+     } else {
+         hideShowMoreBtn();
+     }
 
-// }
-
-
-
-// function clearGallery() {
-//     refs.petsList.innerHTML = '';
-//   };
+ }
 
 
+
+ function clearGallery() {
+     refs.petsList.innerHTML = '';
+   };
 
 
 
 
-// function showLoader() {
-//     refs.loader.classList.remove('hidden');
-//     refs.showMore.classList.add('hidden');
-//   };
-
-// function hideLoader() {
-//     refs.loader.classList.add('hidden');
-//     refs.showMore.classList.remove('hidden');
-//   };
 
 
-// function categoryTemplate(category) {
-//     return `<li class="category-name">
-//     <button class="category-btn" data-id="${category._id}">${category.name}</button>
-// </li>`
-// }
+ function showLoader() {
+     refs.loader.classList.remove('hidden');
+     refs.showMore.classList.add('hidden');
+   };
 
-// function categoriesTemplate(categories) {
-//     return categories.map(categoryTemplate).join('');
-// }
+ function hideLoader() {
+     refs.loader.classList.add('hidden');
+     refs.showMore.classList.remove('hidden');
+   };
 
-// function petTemplate(pet) {
-//     const categoriesHTML = pet.categories
-//     .map(cat => `<span class="pet-category">${cat.name}</span>`)
-//     .join(' '); 
 
-//     return `
-//     <li class="pet-card">
-//         <img src="${pet.image}" alt="${pet.shortDescription}" class="pet-image" >
-//         <div class="pet-description-container">
-//         <p class="pet-type">${pet.species}</p>
-//         <h3 class="pet-name">${pet.name}</h3>
-//         <div class="pet-categories-container">
-//         ${categoriesHTML}
-//         </div>
-//         <div class="age-gender">
-//         <p class="pet-age">${pet.age}</p>
-//         <p class="pet-gender">${pet.gender}</p>
-//         </div>
-//         <p class="pet-description">${pet.shortDescription}</p>
-//         <button class="find-out-more" type="button">Дізнатись більше</button>
-//     </div>
-//     </li>`
-// };
+ function categoryTemplate(category) {
+     return `<li class="category-name">
+     <button class="category-btn" data-id="${category._id}">${category.name}</button>
+ </li>`
+ }
 
-// function petsTemplate(pets) {
-//     return pets.map(petTemplate).join('');
-// }
+ function categoriesTemplate(categories) {
+     return categories.map(categoryTemplate).join('');
+ }
+
+ function petTemplate(pet) {
+     const categoriesHTML = pet.categories
+     .map(cat => `<span class="pet-category">${cat.name}</span>`)
+     .join(' '); 
+
+     return `
+     <li class="pet-card">
+         <img src="${pet.image}" alt="${pet.shortDescription}" class="pet-image" >
+         <div class="pet-description-container">
+         <p class="pet-type">${pet.species}</p>
+         <h3 class="pet-name">${pet.name}</h3>
+         <div class="pet-categories-container">
+         ${categoriesHTML}
+         </div>
+         <div class="age-gender">
+         <p class="pet-age">${pet.age}</p>
+         <p class="pet-gender">${pet.gender}</p>
+         </div>
+         <p class="pet-description">${pet.shortDescription}</p>
+         <button class="find-out-more" type="button">Дізнатись більше</button>
+     </div>
+     </li>`
+ };
+
+ function petsTemplate(pets) {
+     return pets.map(petTemplate).join('');
+ }
 
   
 
