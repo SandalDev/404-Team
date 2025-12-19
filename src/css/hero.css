@@ -4,9 +4,13 @@
   padding-bottom: 115px;
   margin: 0 auto;
 
-  background: center / cover no-repeat;
   background-image: url("../img/hero/hero-mob-min.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
+
+/* ❌ overlay УБРАН — из-за него был лишний скролл */
 
 /* container */
 .hero-container {
@@ -21,9 +25,9 @@
 
 /* content */
 .hero-content {
+  color: #ffffff;
   display: flex;
   flex-direction: column;
-  color: #ffffff;
 }
 
 /* title */
@@ -101,6 +105,7 @@
 
   .hero-text {
     max-width: 512px;
+    font-size: 16px;
   }
 }
 
