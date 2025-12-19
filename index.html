@@ -15,9 +15,9 @@
 
     <title>Хатинка Лапок</title>
     <script type="module" crossorigin src="/404-Team/index.js"></script>
-    <link rel="modulepreload" crossorigin href="/404-Team/assets/vendor-N-XT4TYG.js">
-    <link rel="stylesheet" crossorigin href="/404-Team/assets/vendor-BGLjlqtF.css">
-    <link rel="stylesheet" crossorigin href="/404-Team/assets/index-D14lGvkD.css">
+    <link rel="modulepreload" crossorigin href="/404-Team/assets/vendor-BcoNkyus.js">
+    <link rel="stylesheet" crossorigin href="/404-Team/assets/vendor-BVZfgfR4.css">
+    <link rel="stylesheet" crossorigin href="/404-Team/assets/index-DdfRBJiq.css">
   </head>
   <body>
     <!--header section-->
@@ -507,7 +507,74 @@
     </div>
 </section>
 
-    
+    <!-- ORDER MODAL -->
+<div class="backdrop is-hidden" data-order-modal>
+  <div class="order-modal" role="dialog" aria-modal="true">
+
+    <button
+      type="button"
+      class="order-modal__close"
+      data-order-close
+      aria-label="Закрити"
+    >
+      <svg
+        class="order-modal__close-icon"
+        width="24"
+        height="24"
+        aria-hidden="true"
+      >
+        <use href="../img/icon.svg#icon-close"></use>
+      </svg>
+    </button>
+
+    <div class="order-modal__inner">
+      <h2 class="order-modal__title">
+        Залишіть<br />
+        заявку на<br />
+        знайомство
+      </h2>
+
+      <form class="order-form" data-order-form>
+        <label>
+          <span>Імʼя*</span>
+          <input
+            type="text"
+            name="name"
+            placeholder="Андрій"
+            autocomplete="name"
+            required
+          />
+        </label>
+
+        <label>
+          <span>Телефон*</span>
+          <input
+            type="tel"
+            name="phone"
+            placeholder="+38 (095) 555 99 22"
+            autocomplete="tel"
+            required
+          />
+        </label>
+
+        <label>
+          <span>Коментар</span>
+          <textarea
+            name="comment"
+            placeholder="Напишіть ваш коментар"
+            autocomplete="off"
+          ></textarea>
+        </label>
+
+        <!-- LOADER -->
+        <span class="order-loader is-hidden" aria-hidden="true"></span>
+
+        <button type="submit">Надіслати</button>
+      </form>
+    </div>
+  </div>
+</div>
+
     <div class="modalpet-backdrop is-hidden" data-pet-modal>
     <div class="modalpet">
         
@@ -520,6 +587,7 @@
     </button>
     </div>
   </div>
+
 
 
   </body>
