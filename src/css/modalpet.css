@@ -1,0 +1,258 @@
+.modalpet-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.45);
+}
+ 
+.modalpet {
+  padding: 64px 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 320px;
+  max-width: 375px;
+  background-color: #f6f4f1;
+  border-radius: 12px;
+  overflow-y: auto;
+  max-height: calc(100vh - 32px);
+  max-height: 99vh;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+.modal-window-pet {
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 32px;
+  }
+
+  .pet-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .modalpet-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #02060a; 
+    cursor: pointer;
+    box-shadow: none;
+    background-color: transparent;    
+    border: none;
+    border-radius: 50%;
+    line-height: 1;
+    transition: background-color 250ms ease-in-out;
+    }
+      
+    .modalpet-close:hover,
+    .modalpet-close:focus-visible {
+      background-color: rgba(0, 0, 0, 0.06);
+      border-radius: 50%;
+    }
+  
+  .modalpet-img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+  }
+
+  .pet-main-details-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .pet-type-paragraph {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .modalpet-name {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .modal-age-gender {
+    display: flex;
+    gap: 16px;
+  }
+
+  .modal-pet-age {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .modal-pet-gender {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .modal-descr-word {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+ .modalpet-desc {
+  font-size: 14px;
+  line-height: 1.5;
+ }
+
+ .modalpet-adopt-btn {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  min-width: 295px;
+  max-width: 350px;
+  height: 45px;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  background-color: #88765C;
+  font-size: 14px;
+  line-height: 1.5;
+  transition: background-color 250ms ease-in-out;
+}
+
+.modalpet-adopt-btn:hover,
+.modalpet-adopt-btn:focus,
+.modalpet-adopt-btn:active {
+  background-color: #EEE9E3;
+  color: #02060A;
+  border: 1px solid #88765C;
+  box-shadow: inset 0 4px 6px -2px rgba(0, 0, 0, 0.03), inset 0 12px 16px -4px rgba(0, 0, 0, 0.08);
+}
+
+  .is-hidden {
+    display: none;
+  }
+  
+
+  @media screen and (min-width: 768px) {
+    .modalpet {
+      max-width: 704px;
+      padding: 64px 32px;
+    }
+
+   .modal-window-pet {
+      flex-direction: row;
+      gap: 32px;
+      padding: 0;
+      margin-bottom: 0;
+    }
+
+    .modalpet-img {
+      width: 304px;
+      height: 450px;
+      flex-shrink: 0;
+      margin-bottom: 0;
+    }
+
+    .modal-window-pet {
+      position: relative;
+    }
+
+    .pet-details-container:last-child {
+      margin-bottom: 0;
+    }
+
+  .modal-age-gender {
+    margin-bottom: 101px;
+  }
+
+  .modalpet-adopt-btn {
+    position: absolute;  
+    top: 186px;
+    right: 32px;  
+    width: 304px;   
+  }
+}
+
+
+  @media screen and (min-width: 1440px) {
+    .modalpet {
+      max-width: 1312px;
+      padding: 64px;
+      border-radius: 16px;
+    }
+  
+    .modalpet-img {
+      height: 320px;
+      border-radius: 12px;
+    }
+
+    .modalpet-adopt-btn {
+      position: absolute;
+      bottom: 64px;
+      right: 64px;
+      top: auto;
+      width: calc((100% - 160px) / 2);
+      min-width: 0;    
+      max-width: none;
+      height: 48px;
+      font-size: 16px;
+    }
+
+    .modal-age-gender {
+      margin-bottom: 0;
+    }
+
+    .modalpet-img {
+      width: 576px;
+      height: 450px;
+    }
+
+    .modalpet-close {
+      width: 32px;
+      height: 32px;
+    }
+
+    .modal-window-pet {
+      gap: 32px;
+    }
+
+    .pet-type-paragraph {
+      font-size: 14px;
+    };
+
+    .modalpet-name {
+      font-size: 40px;
+    }
+
+    .modal-pet-age {
+      font-size: 14px;
+    }
+
+    .modal-pet-gender {
+      font-size: 14px;
+    }
+
+    .modal-descr-word {
+      font-size: 16px;
+    }
+
+    .modalpet-desc {
+      font-size: 16px;
+    }
+  }
