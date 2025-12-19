@@ -1,0 +1,88 @@
+/* приховуємо меню спочатку */
+.mobile-menu-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f6f4f1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-100%) scale(0.9);
+    /* меню виїжджає зверху */
+    transform-origin: top;
+    transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.4s;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* відкрите меню */
+.mobile-menu-section.open {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+    padding: 0;
+}
+
+/* контент меню */
+.mobile-menu-container {
+    padding: 0 20px;
+}
+
+/* кнопка закриття */
+.close-button {
+    background: none;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+    padding: 4px;
+}
+
+/* стилізація списку */
+.menu-nav-list-menu {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    text-align: start;
+    gap: 34px;
+    padding: 0;
+    margin: 40px 0 64px;
+}
+
+
+.menu-link-menu {
+    text-decoration: none;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.5;
+}
+
+.btn-header-mobile {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    border: 1px solid #88765c;
+    background-color: #88765c;
+    border-radius: 8px;
+    padding: 8px 20px;
+    width: 335px;
+
+}
+
+.menu-mobile-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mobile-btn-container {
+    text-align: center;
+}
+
+@media only screen and (min-width: 768px) {
+    .menu-nav-list-menu {
+        text-align: center;
+    }
+}

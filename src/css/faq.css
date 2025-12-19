@@ -1,0 +1,143 @@
+.faq {
+    padding: 64px 0;
+}
+
+
+.faq-title {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    text-align: center;
+    color: #02060a;
+    margin-bottom: 40px;
+}
+
+.ac .ac-header .ac-trigger {
+    box-shadow: unset;
+    border: none;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #02060a;
+}
+
+
+.accordion-container .ac {
+    background-color: #eee9e3;
+    border: 0px solid rgba(2, 6, 10, 0.15);
+    border-radius: 8px;
+    padding: 20px 24px;
+    max-width: 335px;
+    margin: 0 auto;
+}
+
+.accordion-container .ac:not(:last-child) {
+    margin-bottom: 16px;
+}
+
+.accordion-container .ac .ac-trigger:focus {
+    color: #02060a;
+}
+
+.accordion-container .ac.is-active>.ac-header .ac-trigger::after {
+    content: url('/img/faq/close.svg');
+    display: block;
+    width: 24px;
+    height: 24px;
+    right: -4px;
+}
+
+.accordion-container .ac .ac-trigger::after {
+    content: url('/img/faq/add.svg');
+    display: block;
+    width: 24px;
+    height: 24px;
+    right: -4px;
+}
+
+
+.accordion-container .ac .ac-panel .ac-text {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #02060a;
+    padding: unset;
+    margin-bottom: 12px;
+}
+
+
+.faq-ol-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    list-style-type: decimal;
+    list-style-position: outside;
+    padding-left: 24px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #02060a;
+}
+
+
+.faq-ul-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    list-style-type: disc;
+    list-style-position: outside;
+    padding-left: 20px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #02060a;
+    padding: 0;
+}
+
+.faq-container {
+    padding: 0;
+}
+
+
+.ac:nth-child(3) .faq-ul-list {
+    margin-bottom: 12px;
+}
+
+@media (min-width: 768px){
+    .faq-title{
+        margin-bottom: 80px;
+    }
+        .accordion-container .ac {
+            max-width: 704px;
+        }
+}
+
+
+@media (min-width: 1440px){
+    .faq{
+        padding: 80px 0;
+    }
+
+    .faq-container{
+        max-width: 894px;
+        padding: 0 15px;
+    }
+
+    .ac .ac-header .ac-trigger{
+        max-width: 740px;
+    }
+
+    .accordion-container .ac .ac-trigger::after{
+        right: -100px;
+    }
+
+    .accordion-container .ac.is-active> .ac-header .ac-trigger::after{
+        right: -100px;
+    }
+    .accordion-container .ac {
+        max-width: none;
+    }
+}
