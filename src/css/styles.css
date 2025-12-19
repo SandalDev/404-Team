@@ -7,7 +7,6 @@
 /* Common styles */
 @import url('./reset.css');
 @import url('./container.css');
-@import url('./base.css');
 
 /* Sections style */
 @import url('./header.css');
@@ -22,5 +21,6 @@
 @import url('./footer.css');
 
 @import url('./mobile-menu.css');
+
 @import url('./modal.css');
 @import url('./modalpet.css');
