@@ -1,6 +1,7 @@
 const burgerBtn = document.querySelector('.burger-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 const closeBtn = document.getElementById('data-burger-close');
+const menuLinks = document.querySelectorAll('.menu-link-menu');
 
 // відкрити меню
 burgerBtn.addEventListener('click', () => {
@@ -23,4 +24,11 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
     mobileMenu.classList.remove('open');
   }
+});
+
+// закриття меню після кліку на посилання
+menuLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+  });
 });
