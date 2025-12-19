@@ -7,3 +7,7 @@ import './js/stories.js';
 import './js/mobile-menu.js';
 import './js/modal.js';
 import './js/modalpet.js';
+import './js/petslist/pets-main.js';
+
+import './js/modalpet';
+import './js/modal';
