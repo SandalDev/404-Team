@@ -224,6 +224,9 @@ margin: 0 auto;
     line-height: 150%;
     color: #F6F4F1;
     width: 548px;
+    padding-left: 0;
+    margin-left: 32px;
+    bottom: 32px;
   }
 
   .section-about .swiper-pagination {
@@ -328,8 +331,10 @@ margin: 0 auto;
     font-size: 18px;
     line-height: 150%;
     color: #F6F4F1;
-    width: 548px;
-    height: 108px;
+    width: 540px;
+    margin-left: 64px;
+    padding-left: 0;
+    bottom: 64px;
   }
 
   .section-about .swiper-pagination {

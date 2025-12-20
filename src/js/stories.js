@@ -49,9 +49,11 @@ fetch('https://paw-hut.b.goit.study/api/feedbacks')
       const totalSlides = json.feedbacks.length;
       const totalBullets = Math.ceil(totalSlides / slidesPerView);
 
-      if (swiper) swiper.destroy(true, true); // якщо слайдер вже існує, видаляємо
-swiper = new Swiper('.slider .swiper', {
-  slidesPerView: slidesPerView,
+      if (swiper) swiper.destroy(true, true);
+      // якщо слайдер вже існує, видаляємо
+  swiper = new Swiper('.slider .swiper', {
+    slidesPerView: slidesPerView,
+    loop: true,
   pagination: {
     el: '.controls .swiper-pagination',
     clickable: true,
@@ -61,7 +63,7 @@ swiper = new Swiper('.slider .swiper', {
   navigation: {
     nextEl: '.swiper-but .swiper-button-next',
     prevEl: '.swiper-but .swiper-button-prev',
-  },
+    },
 });
 
     };

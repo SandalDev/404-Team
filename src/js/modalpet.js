@@ -22,7 +22,6 @@ refs.petsList.addEventListener('click', async e => {
 });
 
 refs.modalCloseBtn.addEventListener('click', (e) => {
-  if(e.target !== e.currentTarget) return;
   closeModal();
 });
 
