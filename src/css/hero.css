@@ -59,9 +59,9 @@
 
 .section-hero-link:hover,
 .section-hero-link:focus {
-    background-color: #EEE9E3;
-    color: #02060A;
-    border: 1px solid #88765c;
+     border: 1px solid #02060a;
+  background: #c3b49d;
+  color: #02060a;
 }
 
 .section-hero-link:active {
@@ -137,3 +137,4 @@
         background-image: url(../img/hero/hero-desk@2x-min.jpg);
     }
 }
+
