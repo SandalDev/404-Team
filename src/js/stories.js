@@ -36,7 +36,7 @@ fetch('https://paw-hut.b.goit.study/api/feedbacks')
               <span class="star">&#9733;</span>
             </div>
             <p class="feedback-text">${fb.description}</p>
-            <p class="feedback-author">— ${fb.author}</p>
+            <p class="feedback-author"> ${fb.author}</p>
           </div>
         </div>
       `);
@@ -49,19 +49,21 @@ fetch('https://paw-hut.b.goit.study/api/feedbacks')
       const totalSlides = json.feedbacks.length;
       const totalBullets = Math.ceil(totalSlides / slidesPerView);
 
-      if (swiper) swiper.destroy(true, true); // якщо слайдер вже існує, видаляємо
-swiper = new Swiper('.slider .swiper', {
-  slidesPerView: slidesPerView,
+      if (swiper) swiper.destroy(true, true);
+      // якщо слайдер вже існує, видаляємо
+  swiper = new Swiper('.slider .swiper', {
+    slidesPerView: slidesPerView,
+    loop: true,
   pagination: {
     el: '.controls .swiper-pagination',
     clickable: true,
     dynamicBullets: true,        // ОБОВ'ЯЗКОВО
-    dynamicMainBullets: 3,       // Максимум 3 видимі bullets
+    dynamicMainBullets: 2,       // Максимум 3 видимі bullets
   },
   navigation: {
     nextEl: '.swiper-but .swiper-button-next',
     prevEl: '.swiper-but .swiper-button-prev',
-  },
+    },
 });
 
     };

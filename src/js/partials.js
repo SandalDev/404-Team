@@ -10,7 +10,7 @@
      categories: document.querySelector('.pets-categories'),
      petsList: document.querySelector('.pets-list'),
      showMore: document.querySelector('.show-more'),
-     loader: document.querySelector('.js-loader') 
+     loader: document.querySelector('.js-loader')
  }
 
  let currentPage = 1; 
@@ -18,6 +18,7 @@
  let mode = 'all';
  let limit;
  let categoryId;
+ let petsData = [];
 
 
  function renderMore(pets) {
@@ -32,6 +33,7 @@
      if(mode === 'all') {
          try{
              const result = await getPetsList(currentPage); 
+             petsData.push(...result.animals);
              renderMore(result.animals);
              totalPages = Math.ceil(result.totalItems / limit);
              handleShowMoreBtn();
@@ -48,6 +50,7 @@
      } else if(mode === 'category') {
          try{
              const result = await getPetsByCategory(categoryId, currentPage);
+             petsData.push(...result.animals);
              renderMore(result.animals);
              totalPages = Math.ceil(result.totalItems / limit);
              handleShowMoreBtn();
@@ -102,10 +105,10 @@
      currentPage = 1;
      try{
          const petsResult = await getPetsList();
+         petsData = petsResult.animals;
          const petsMarkup = petsTemplate(petsResult.animals);
          refs.petsList.innerHTML = petsMarkup;
          totalPages = Math.ceil(petsResult.totalItems / limit);
-         console.log(totalPages);
          hideLoader();
          handleShowMoreBtn();
      } catch {
@@ -137,6 +140,7 @@
      if(id === '0') {
          try{
              const res = await getPetsList(currentPage);
+             petsData = res.animals;
              const markup = petsTemplate(res.animals);
              totalPages = Math.ceil(res.totalItems / limit);
              refs.petsList.innerHTML = markup;
@@ -155,6 +159,7 @@
      } else {
          try{
              const res = await getPetsByCategory(id, currentPage);
+             petsData = res.animals;
              const markup = petsTemplate(res.animals);
              totalPages = Math.ceil(res.totalItems / limit);
              refs.petsList.innerHTML = markup;
@@ -234,7 +239,7 @@
      .join(' '); 
 
      return `
-     <li class="pet-card">
+     <li class="pet-card" data-id="${pet._id || pet.id || 'invalid'}">
          <img src="${pet.image}" alt="${pet.shortDescription}" class="pet-image" >
          <div class="pet-description-container">
          <p class="pet-type">${pet.species}</p>
@@ -255,6 +260,8 @@
  function petsTemplate(pets) {
      return pets.map(petTemplate).join('');
  }
+
+ export { petsData };
 
   
 

@@ -1,3 +1,6 @@
+
+
+
 .header-section,
 .header-section *,
 .header-section *::before,
@@ -67,7 +70,7 @@
         display: none;
     }
     .nav-link-menu {
-        text-wrap: nowrap;
+        /* text-wrap: nowrap; */
         font-weight: 400;
     font-size: 16px;
     padding: 24px 0;
@@ -93,9 +96,11 @@
             background-color 0.2s ease,
             box-shadow 0.2s ease,
             transform 0.1s ease;
+        color: #fff;
     }
     .btn-header:hover {
         background-color: #eee9e3;
+        color: black;
     }
     .btn-header:focus-visible {
         background-color: #eee9e3;

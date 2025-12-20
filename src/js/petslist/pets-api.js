@@ -24,7 +24,6 @@ async function getPetsList(currentPage = 1) {
         const res = await axios.get(url, { params });
         return res.data;
       } catch (error) {
-        console.error('Error:', error);
         return []; 
       }
 };
@@ -43,10 +42,8 @@ async function getPetsByCategory(categoryId, currentPage = 1) {
 
     try {
         const res = await axios.get(url, { params });
-        console.log(res.data);
         return res.data;
       } catch (error) {
-        console.error('Error:', error);
         return []; 
       }
 };

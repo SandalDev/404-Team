@@ -1,0 +1,89 @@
+<!-- ORDER MODAL -->
+<div class="backdrop is-hidden" data-order-modal data-backdrop>
+  <div class="order-modal" role="dialog" aria-modal="true">
+    <!-- CLOSE BUTTON -->
+    <button
+      type="button"
+      class="order-modal__close"
+      data-order-close
+      aria-label="Закрити"
+    >
+      <svg width="24" height="24" aria-hidden="true" viewBox="0 0 32 32">
+        <path
+          stroke-linejoin="miter"
+          stroke-linecap="butt"
+          stroke-miterlimit="4"
+          stroke-width="1.3333"
+          d="M23.466 7.9c0.219 0 0.355 0.065 0.462 0.172
+             s0.172 0.242 0.172 0.461
+             c0 0.219-0.065 0.355-0.172 0.462
+             l-7.005 7.005 7.005 7.004
+             c0.107 0.107 0.172 0.243 0.172 0.462
+             s-0.065 0.355-0.172 0.462
+             c-0.107 0.107-0.243 0.172-0.462 0.172
+             s-0.355-0.065-0.462-0.172
+             l-7.004-7.005-7.005 7.005
+             c-0.107 0.107-0.243 0.172-0.462 0.172
+             s-0.354-0.065-0.461-0.172
+             c-0.107-0.107-0.172-0.243-0.1721-0.462
+             s0.065-0.355 0.172-0.462
+             l7.004-7.004-7.004-7.005
+             c-0.107-0.107-0.172-0.243-0.172-0.462
+             s0.065-0.354 0.172-0.461
+             s0.242-0.172 0.461-0.172
+             c0.219 0 0.355 0.065 0.462 0.172
+             l7.005 7.004 7.004-7.004
+             c0.107-0.107 0.243-0.172 0.462-0.172z"
+        ></path>
+      </svg>
+    </button>
+
+    <div class="order-modal__inner">
+      <h2 class="order-modal__title">
+        Залишіть заявку на знайомство
+      </h2>
+
+      <form class="order-form" data-order-form novalidate>
+        <!-- NAME -->
+        <label class="order-form__field">
+          <span>Імʼя*</span>
+          <input
+            type="text"
+            name="name"
+            placeholder="Андрій"
+            class="order-form__input"
+            required
+          />
+          <p class="order-form__error"></p>
+        </label>
+
+        <!-- PHONE -->
+        <label class="order-form__field">
+          <span>Телефон*</span>
+          <input
+            type="tel"
+            name="phone"
+            placeholder="+38 (095) 555 99 22"
+            class="order-form__input"
+            required
+          />
+          <p class="order-form__error"></p>
+        </label>
+
+        <!-- COMMENT -->
+        <label class="order-form__field">
+          <span>Коментар</span>
+          <textarea
+            name="comment"
+            placeholder="Напишіть ваш коментар"
+          ></textarea>
+        </label>
+
+        <!-- SUBMIT -->
+        <button type="submit" class="order-form__submit">
+          Надіслати
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

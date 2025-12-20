@@ -1,0 +1,309 @@
+/* ================================================= */
+/* BACKDROP */
+/* ================================================= */
+
+.backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    z-index: 999;
+    transition: opacity 0.3s ease;
+}
+
+/* ================================================= */
+/* HIDDEN STATE */
+/* ================================================= */
+
+.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* ================================================= */
+/* ORDER MODAL — MOBILE FLUID (320–374) */
+/* ================================================= */
+
+.order-modal {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 375px;
+    background-color: #f6f4f1;
+    border-radius: 12px;
+    padding: 64px 20px;
+    max-height: calc(100vh - 32px);
+}
+
+/* ================================================= */
+/* ORDER MODAL — MOBILE FIXED (375–767) */
+/* ================================================= */
+
+@media screen and (min-width: 375px) {
+    .order-modal {
+        width: 375px;
+        max-width: 375px;
+    }
+}
+
+/* ================================================= */
+/* CLOSE BUTTON */
+/* ================================================= */
+
+.order-modal__close {
+    appearance: none;
+    background: none;
+    border: none;
+    box-shadow: none;
+    outline: none;
+
+    position: absolute;
+    top: 16px;
+    right: 16px;
+
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+.order-modal__close:hover,
+.order-modal__close:focus {
+    color: #c3b49d;
+}
+
+/* ================================================= */
+/* INNER */
+/* ================================================= */
+
+.order-modal__inner {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    max-height: calc(100% - 32px);
+}
+
+/* ================================================= */
+/* TITLE */
+/* ================================================= */
+
+.order-modal__title {
+    max-width: 290px;
+    margin: 0 auto 48px;
+
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    text-align: center;
+
+    color: #02060a;
+}
+
+/* ================================================= */
+/* FORM FIELDS */
+/* ================================================= */
+
+.order-form__field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    color: #02060a;
+}
+
+/* ================================================= */
+/* INPUTS & TEXTAREA */
+/* ================================================= */
+
+.order-form input,
+.order-form textarea {
+    box-sizing: border-box;
+    width: 100%;
+
+    padding: 8px 12px;
+    font-size: 14px;
+    font-family: inherit;
+    line-height: 1.5;
+    color: #02060a;
+
+    background: rgba(2, 6, 10, 0.05);
+    border: 1px solid transparent;
+    border-radius: 12px;
+    outline: none;
+
+    transition: border-color 200ms ease, background-color 200ms ease;
+}
+
+/* Placeholder */
+
+.order-form input::placeholder,
+.order-form textarea::placeholder {
+    color: #b3b4b5;
+}
+
+
+/* ================= ERROR STATE ================= */
+
+.order-form__input.is-error {
+  border-color: #e74a3b;
+  background-color: #fff;
+}
+
+.order-form__error {
+  min-height: 14px;
+  font-size: 12px;
+  line-height: 1.3;
+  color: #e74a3b;
+}
+
+/* ================= CLOSE ICON ================= */
+
+.order-modal__icon {
+  display: block;
+  fill: currentColor;
+}
+
+.order-modal__close {
+  color: #02060a;
+  cursor: pointer;
+}
+
+.order-modal__close:hover,
+.order-modal__close:focus {
+  color: #c3b49d;
+}
+
+
+/* Hover */
+
+.order-form input:hover,
+.order-form textarea:hover {
+    border-color: #c6b8a6;
+}
+
+/* Focus */
+
+.order-form input:focus,
+.order-form textarea:focus {
+    background-color: #ffffff;
+    border-color: #c6b8a6;
+}
+
+/* Placeholder on focus */
+
+.order-form input:focus::placeholder,
+.order-form textarea:focus::placeholder {
+    color: rgba(179, 180, 181, 0.6);
+}
+
+/* Textarea */
+
+.order-form textarea {
+    resize: none;
+    height: 180px;
+    overflow-y: auto;
+}
+
+/* ================================================= */
+/* SUBMIT BUTTON */
+/* ================================================= */
+
+.order-form__submit {
+    margin-top: 24px;
+    width: 100%;
+    padding: 14px;
+
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    background-color: #88765c;
+    color: #ffffff;
+
+    font-weight: 600;
+    font-size: 14px;
+    font-family: inherit;
+
+    transition:
+        background-color 200ms ease,
+        border-color 200ms ease,
+        color 200ms ease;
+}
+
+.order-form__submit:hover {
+        background-color: #eee9e3;
+        color: black;
+    }
+    .btn-header:focus-visible {
+        background-color: #eee9e3;
+        box-shadow:
+            inset 0 4px 6px -2px rgba(0, 0, 0, 0.03),
+            inset 0 12px 16px -4px rgba(0, 0, 0, 0.08);
+        outline: none;
+    }
+.order-form__submit:active {
+        background-color: #c3b49d;
+        transform: translateY(1px);
+    }
+/* ================================================= */
+/* TABLET — 768px+ */
+/* ================================================= */
+
+@media screen and (min-width: 768px) {
+    .backdrop {
+        padding: 24px;
+    }
+
+    .order-modal {
+        width: 704px;
+        max-width: 768px;
+        padding: 64px 32px;
+        border-radius: 8px;
+    }
+
+    .order-modal__inner {
+        max-width: 768px;
+    }
+
+    .order-modal__title {
+        max-width: 768px;
+
+        font-size: 40px;
+        white-space: normal;
+    }
+
+
+    .order-form__submit {
+        display: block;
+        margin: 24px auto 0;
+        padding: 12px 24px;
+        width: 240px;
+        height: 45px;
+    }
+
+}
+
+/* ================================================= */
+/* DESKTOP — 1440px+ */
+/* ================================================= */
+
+@media screen and (min-width: 1440px) {
+    .order-modal {
+        padding: 64px;
+    }
+
+    .order-form__submit {
+        height: 48px;
+    }
+}
+

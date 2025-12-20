@@ -1,24 +1,27 @@
-import {  getPetsList } from './petslist/pets-api';
 import { refs } from './petslist/pets-render';
-import axios from 'axios';
+import { petsData } from './partials.js';
 
 refs.petsList.addEventListener('click', async e => {
+    if (!e.target.classList.contains('find-out-more')) return;
+
     const petCard = e.target.closest('li');
-    console.log(petCard);
-    console.log('something');
     const id = petCard.dataset.id;
-    console.log(id);
-    const allPets = (await getAllPetsList()).animals;
-    console.log(allPets);
+    if (!id || id === 'undefined') {
+        console.error('Invalid data-id on pet card');
+        return;
+    }
+    const allPets = petsData;
     const petItem = allPets.find(pet => pet._id === id);
-    console.log(petItem);
+    if (!petItem) {
+        console.error('Pet not found');
+        return;
+    }
     const markup = renderPetModal(petItem);
     refs.modal.innerHTML = markup;
     openModal();
 });
 
 refs.modalCloseBtn.addEventListener('click', (e) => {
-  if(e.target !== e.currentTarget) return;
   closeModal();
 });
 
@@ -33,19 +36,6 @@ function handleCloseModal(e) {
     } else {
         return;
     }
-};
-
-async function getAllPetsList() {
-    const url = 'https://paw-hut.b.goit.study/api/animals';
-
-
-    try {
-        const res = await axios.get(url);
-        return res.data;
-      } catch (error) {
-        console.error('Error:', error);
-        return []; 
-      }
 };
 
 function renderPetModal(pet) {

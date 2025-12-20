@@ -131,11 +131,11 @@
     }
 
     .accordion-container .ac .ac-trigger::after{
-        right: -100px;
+        right: -80px;
     }
 
     .accordion-container .ac.is-active> .ac-header .ac-trigger::after{
-        right: -100px;
+        right: -80px;
     }
     .accordion-container .ac {
         max-width: none;
