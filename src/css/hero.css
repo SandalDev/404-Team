@@ -1,4 +1,4 @@
-.promo {
+.section-hero {
     padding-top: 64px;
     padding-bottom: 115px;
     background-image: url(../img/hero/hero-mob-min.jpg);
@@ -9,16 +9,16 @@
     margin: 0 auto;
 }
 
-.promo-wrapper {
+.section-hero-wrap {
     max-width: 335px;
 }
 
-.promo .container {
+.section-hero .container {
     display: flex;
     flex-direction: column;
 }
 
-.promo-title {
+.section-hero-title {
     font-family: "Open Sans", sans-serif;
     font-size: 40px;
     line-height: 1.2;
@@ -27,13 +27,13 @@
     margin-bottom: 24px;
 }
 
-.promo-text {
+.section-hero-text {
     font-size: 16px;
     color: #fff;
     margin-bottom: 32px;
 }
 
-.promo-link {
+.section-hero-link {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,82 +47,77 @@
                 background-color 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.promo-link:hover,
-.promo-link:focus {
+.section-hero-link:hover,
+.section-hero-link:focus {
     color: #02060A;
     background-color: #EEE9E3;
     border: 1px solid #88765c;
 }
 
-.promo-link:active {
+.section-hero-link:active {
     box-shadow: inset 0 4px 6px -2px rgba(0, 0, 0, 0.03),
                 inset 0 12px 16px -4px rgba(0, 0, 0, 0.08);
 }
 
-/* Retina mobile */
 @media screen and (min-resolution: 2dppx) {
-    .promo {
+    .section-hero {
         background-image: url(../img/hero/hero-mob@2x-min.jpg);
     }
 }
 
-/* Tablet */
 @media screen and (min-width: 768px) {
-    .promo {
+    .section-hero {
         max-width: 768px;
         padding-bottom: 235px;
         background-image: url(../img/hero/hero-tab-min.jpg);
     }
 
-    .promo-title {
+    .section-hero-title {
         max-width: 622px;
     }
 
-    .promo-text {
+    .section-hero-text {
         max-width: 512px;
     }
 
-    .promo-wrapper {
+    .section-hero-wrap {
         max-width: 704px;
     }
 }
 
-/* Tablet retina */
 @media screen and (min-width: 768px) and (min-resolution: 2dppx) {
-    .promo {
+    .section-hero {
         background-image: url(../img/hero/hero-tab@2x-min.jpg);
     }
 }
 
-/* Desktop */
 @media screen and (min-width: 1440px) {
-    .promo {
+    .section-hero {
         background-image: url(../img/hero/hero-desk-min.jpg);
         max-width: 1440px;
         padding-top: 128px;
         padding-bottom: 413px;
     }
 
-    .promo-title {
+    .section-hero-title {
         font-size: 56px;
     }
 
-    .promo-text {
+    .section-hero-text {
         font-size: 18px;
     }
 
-    .promo-link {
+    .section-hero-link {
         font-size: 16px;
     }
 
-    .promo-wrapper {
+    .section-hero-wrap {
         margin-left: 0;
     }
 }
 
-/* Desktop retina */
 @media screen and (min-width: 1440px) and (min-resolution: 2dppx) {
-    .promo {
+    .section-hero {
         background-image: url(../img/hero/hero-desk@2x-min.jpg);
     }
 }
