@@ -152,6 +152,39 @@
     color: #b3b4b5;
 }
 
+
+/* ================= ERROR STATE ================= */
+
+.order-form__input.is-error {
+  border-color: #e74a3b;
+  background-color: #fff;
+}
+
+.order-form__error {
+  min-height: 14px;
+  font-size: 12px;
+  line-height: 1.3;
+  color: #e74a3b;
+}
+
+/* ================= CLOSE ICON ================= */
+
+.order-modal__icon {
+  display: block;
+  fill: currentColor;
+}
+
+.order-modal__close {
+  color: #02060a;
+  cursor: pointer;
+}
+
+.order-modal__close:hover,
+.order-modal__close:focus {
+  color: #c3b49d;
+}
+
+
 /* Hover */
 
 .order-form input:hover,
