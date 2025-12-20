@@ -26,15 +26,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-height: 72px;
     background-color: #f6f4f1;
-    position: fixed;
-        top: 0;
-        left: 0; 
-        right: 0; 
-        z-index: 999;
-            width: 100vw;
-    max-width: none;
     margin: 0 auto;
 }
 
@@ -55,8 +47,7 @@
 
 @media only screen and (min-width: 768px) {
     .header-container {
-        /* justify-content: flex-start; */
-        padding: 0 32px;
+        padding: 0;
     }
 
     .header-nav {
@@ -79,7 +70,7 @@
         display: none;
     }
     .nav-link-menu {
-        text-wrap: nowrap;
+        /* text-wrap: nowrap; */
         font-weight: 400;
     font-size: 16px;
     padding: 24px 0;
