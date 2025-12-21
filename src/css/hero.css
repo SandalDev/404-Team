@@ -115,9 +115,13 @@
         background-image: url(../img/hero/hero-desk-min.jpg);
     }
 
-    .section-hero-title {
-        font-size: 56px;
-    }
+  .section-hero-title {
+    font-size: 56px;
+    line-height: 1.2;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+}
 
     .section-hero-text {
         font-size: 18px;
@@ -137,5 +141,6 @@
         background-image: url(../img/hero/hero-desk@2x-min.jpg);
     }
 }
+
 
 
