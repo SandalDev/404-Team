@@ -21,17 +21,14 @@
   background-color: #f6f4f1;
   border-radius: 12px;
   overflow-y: auto;
-  /* max-height: calc(100vh - 32px); */
   max-height: 99vh;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
 }
 
 .modal-window-pet {
-  /* background-color: red; */
   display: flex;
   flex-direction: column;
   gap: 24px;
-  /* margin-bottom: 32px; */
   }
 
   .pet-content-wrapper {
@@ -39,10 +36,6 @@
     flex-direction: column;
     gap: 16px;
   }
-
-  /* .pet-details-container:last-child {
-    margin-bottom: 32px;
-  } */
 
   .modalpet-close {
     position: absolute;
@@ -177,29 +170,15 @@
       margin-bottom: 0;
     }
 
-    /* .modal-window-pet {
-      position: relative;
-    } */
-
     .pet-details-container:last-child {
       margin-bottom: 0;
     }
 
-  /* .modal-age-gender {
-    margin-bottom: 101px;
-  } */
-
- 
-
-  .pet-main-details-container {
-    order: 1;
-  }
+    .pet-main-details-container {
+      order: 1;
+    }
 
   .modalpet-adopt-btn {
-    /* position: absolute;  
-    top: 186px;
-    right: 32px;  
-    width: 304px;    */
     order: 2;
   }
 

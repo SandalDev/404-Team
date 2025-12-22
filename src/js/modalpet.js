@@ -47,8 +47,8 @@ function renderPetModal(pet) {
     <p class="pet-type-paragraph">${pet.species}</p>
     <h3 class="modalpet-name">${pet.name}</h3>
     <div class="modal-age-gender">
-      <span class="modal-pet-age">${pet.age}</span>
-      <span class="modal-pet-gender">${pet.gender}</span>
+      <p class="modal-pet-age">${pet.age}</p>
+      <p class="modal-pet-gender">${pet.gender}</p>
     </div>
     </div>
     
