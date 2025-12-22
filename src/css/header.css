@@ -1,6 +1,5 @@
 
 
-
 .header-section,
 .header-section *,
 .header-section *::before,
@@ -21,7 +20,9 @@
 .header-nav {
     display: flex;
 }
-
+.head-container {
+    padding: 0 20px;
+}
 .header-container {
     display: flex;
     justify-content: space-between;
@@ -46,6 +47,9 @@
 }
 
 @media only screen and (min-width: 768px) {
+    .head-container {
+            padding: 0 32px;
+        }
     .header-container {
         padding: 0;
     }
@@ -63,6 +67,9 @@
 }
 
 @media only screen and (min-width: 1440px) {
+    .head-container {
+            padding: 0 64px;
+        }
     .header-nav {
         justify-content: start;
     }
@@ -70,8 +77,7 @@
         display: none;
     }
     .nav-link-menu {
-        /* text-wrap: nowrap; */
-        font-weight: 400;
+    font-weight: 400;
     font-size: 16px;
     padding: 24px 0;
     }
@@ -143,7 +149,7 @@
     .nav-list-menu {
         display: flex;
         gap: 32px;
-        padding-left: 24px;
+        margin-left: 24px;
     }
 
 }

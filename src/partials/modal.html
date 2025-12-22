@@ -46,48 +46,54 @@
       </h2>
 
       <form class="order-form" data-order-form novalidate>
+
         <!-- NAME -->
-        <label class="order-form__field">
-          <span>Імʼя*</span>
-          <input
-            type="text"
-            name="name"
-            placeholder="Андрій"
-            class="order-form__input"
-            autocomplete="given-name"
-            required
-          />
-          <p class="order-form__error"></p>
-        </label>
+        <div class="order-form__field">
+          <label>
+            <span>Імʼя*</span>
+            <input
+              type="text"
+              name="name"
+              placeholder="Андрій"
+              class="order-form__input"
+              required
+            />
+          </label>
+          <p class="order-form__error" aria-live="polite"></p>
+        </div>
 
         <!-- PHONE -->
-        <label class="order-form__field">
-          <span>Телефон*</span>
-          <input
-            type="tel"
-            name="phone"
-            placeholder="+38 (095) 555 99 22"
-            class="order-form__input"
-            autocomplete="tel"
-            required
-          />
-          <p class="order-form__error"></p>
-        </label>
+        <div class="order-form__field">
+          <label>
+            <span>Телефон*</span>
+            <input
+              type="tel"
+              name="phone"
+              placeholder="+38 (095) 555 99 22"
+              class="order-form__input"
+              required
+            />
+          </label>
+          <p class="order-form__error" aria-live="polite"></p>
+        </div>
 
         <!-- COMMENT -->
-        <label class="order-form__field">
-          <span>Коментар</span>
-          <textarea
-            name="comment"
-            placeholder="Напишіть ваш коментар"
-            autocomplete="off"
-          ></textarea>
-        </label>
+        <div class="order-form__field">
+          <label>
+            <span>Коментар</span>
+            <textarea
+              name="comment"
+              placeholder="Напишіть ваш коментар"
+              class="order-form__textarea"
+            ></textarea>
+          </label>
+        </div>
 
         <!-- SUBMIT -->
         <button type="submit" class="order-form__submit">
           Надіслати
         </button>
+
       </form>
     </div>
   </div>
