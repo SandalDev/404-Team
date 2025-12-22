@@ -81,7 +81,7 @@ function openModal() {
   document.body.style.overflow = 'hidden';
 };
 
-function closeModal() {
+export function closeModal() {
   refs.backdrop.classList.add('is-hidden');
   window.removeEventListener('keydown', handleCloseModal);
   document.body.style.overflow = '';

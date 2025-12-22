@@ -26,6 +26,14 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
+function handleCloseModalMenu(e) {
+  if(e.code === 'Escape') {
+      closeModal(); 
+  } else {
+      return;
+  }
+};
+
 // закриття меню після кліку на посилання
 menuLinks.forEach(link => {
   link.addEventListener('click', () => {

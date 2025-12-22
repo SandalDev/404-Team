@@ -1,6 +1,5 @@
 import iziToast from 'izitoast';
 import Swal from 'sweetalert2';
-import { handleCloseModal } from './modalpet';
 import { closeModal } from './modalpet';
 
 const closeBtn = document.querySelector('[data-order-close]');
