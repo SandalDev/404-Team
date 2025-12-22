@@ -211,7 +211,6 @@
   display: flex;
   width: 100%;
   margin: 0 auto;
-  min-width: 320px;
   max-width: 375px;
   height: 45px;
   border-radius: 8px;
