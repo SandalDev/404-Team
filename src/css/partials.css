@@ -103,6 +103,10 @@
   border-radius: 8px;
 }
 
+.pets-list-section {
+  padding: 64px 32px;
+}
+
 .sub-description {
   display: flex;
   flex-direction: column;
@@ -355,5 +359,9 @@
 
   .pet-type {
     font-size: 12px;
+  }
+
+  .pets-list-section {
+    padding: 80px 32px;
   }
 }

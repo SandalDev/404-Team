@@ -29,7 +29,7 @@ function handleShowMoreBtn(currentPage, totalPages) {
     } else if (currentPage = totalPages) {
         hideShowMoreBtn();
         iziToast.show({
-            message: `We're sorry, but you've reached the end of search results.`,
+            message: `Ви переглянули всіх тваринок у цій категорії.`,
             color: 'blue',
             position: 'topRight',
             messageSize: '20',
