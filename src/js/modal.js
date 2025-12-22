@@ -16,6 +16,7 @@ function openModal() {
 
 function closeModal() {
   modal.classList.add('is-hidden');
+  // modal.removeEventListener('keydown');
   document.body.style.overflow = '';
 }
 
