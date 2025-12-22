@@ -6,10 +6,7 @@
 
     padding: 64px 0 115px;
 
-    background: 
-        center / cover 
-        no-repeat 
-        url(../img/hero/hero-mob-min.jpg);
+     background: url('/img/hero/hero-mob-min.jpg') center / cover no-repeat;
 }
 
 .section-hero .container {
@@ -74,7 +71,7 @@
 
 @media screen and (min-resolution: 2dppx) {
     .section-hero {
-        background-image: url(../img/hero/hero-mob@2x-min.jpg);
+        background: url('/img/hero/hero-mob@2x-min.jpg') center / cover no-repeat;
     }
 }
 
@@ -84,7 +81,7 @@
     .section-hero {
         max-width: 768px;
         padding-bottom: 235px;
-        background-image: url(../img/hero/hero-tab-min.jpg);
+        background: url('/img/hero/hero-tab-min.jpg') center / cover no-repeat;
     }
 
     .section-hero-wrap {
@@ -102,7 +99,7 @@
 
 @media screen and (min-width: 768px) and (min-resolution: 2dppx) {
     .section-hero {
-        background-image: url(../img/hero/hero-tab@2x-min.jpg);
+        background: url('/img/hero/hero-tab@2x-min.jpg') center / cover no-repeat;
     }
 }
 
@@ -112,7 +109,7 @@
     .section-hero {
         max-width: 1440px;
         padding: 128px 0 413px;
-        background-image: url(../img/hero/hero-desk-min.jpg);
+        background: url('/img/hero/hero-desk-min.jpg') center / cover no-repeat;
     }
 
   .section-hero-title {
@@ -134,7 +131,7 @@
 
 @media screen and (min-width: 1440px) and (min-resolution: 2dppx) {
     .section-hero {
-        background-image: url(../img/hero/hero-desk@2x-min.jpg);
+        background: url('/img/hero/hero-desk@2x-min.jpg') center / cover no-repeat;
     }
 }
 
