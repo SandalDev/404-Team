@@ -1,3 +1,4 @@
+import iziToast from "izitoast";
 
 const refs = {
     categories: document.querySelector('.pets-categories'),
@@ -25,7 +26,7 @@ function hideShowMoreBtn() {
 function handleShowMoreBtn(currentPage, totalPages) {
     if(currentPage < totalPages) {
         showShowMoreBtn();
-    } else {
+    } else if (currentPage = totalPages) {
         hideShowMoreBtn();
         iziToast.show({
             message: `We're sorry, but you've reached the end of search results.`,

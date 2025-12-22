@@ -66,7 +66,7 @@ function renderPetModal(pet) {
     <div class="pet-details-container">
     <span class="modal-descr-word">Поведінка:</span>
     <p class="modalpet-behaviour-desc">${pet.behavior}</p>
-    </div>
+     </div>
 
     <button type="button" class="modalpet-adopt-btn">
       Взяти додому

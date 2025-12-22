@@ -37,7 +37,8 @@ async function loadMorePets() {
       renderMore(result.animals);
       totalPages = Math.ceil(result.totalItems / limit);
       handleShowMoreBtn(currentPage, totalPages);
-    } catch {
+    } catch(error){
+      console.error(error);
       iziToast.show({
         message: `Something went wrong. Please try again later.`,
         color: "red",
@@ -48,13 +49,15 @@ async function loadMorePets() {
       });
     }
   } else if (mode === "category") {
+   
     try {
       const result = await getPetsByCategory(categoryId, currentPage);
       petsData.push(...result.animals);
       renderMore(result.animals);
       totalPages = Math.ceil(result.totalItems / limit);
       handleShowMoreBtn(currentPage, totalPages);
-    } catch {
+    } catch(error) {
+      console.error(error);
       iziToast.show({
         message: `Something went wrong. Please try again later.`,
         color: "red",
@@ -64,7 +67,7 @@ async function loadMorePets() {
         theme: "dark",
       });
     }
-  }
+  } 
   hideLoader();
 }
 
@@ -88,6 +91,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const allElem = elem.firstElementChild;
     allElem.classList.add("active");
   } catch {
+    console.error(error);
     iziToast.show({
       message: `Something went wrong. Please try again later.`,
       color: "red",
@@ -110,6 +114,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     hideLoader();
     handleShowMoreBtn(currentPage, totalPages);
   } catch {
+    console.error(error);
     iziToast.show({
       message: `Something went wrong. Please try again later.`,
       color: "red",
@@ -139,13 +144,17 @@ refs.categories.addEventListener("click", async e => {
   categoryId = id;
 
   if (id === "0") {
+    mode = 'all';
+    currentPage = 1; 
     try {
       const res = await getPetsList(currentPage);
       petsData = res.animals;
       const markup = petsTemplate(res.animals);
       totalPages = Math.ceil(res.totalItems / limit);
       refs.petsList.innerHTML = markup;
+      handleShowMoreBtn(currentPage, totalPages);
     } catch {
+      console.error(error);
       iziToast.show({
         message: `Something went wrong. Please try again later.`,
         color: "red",
@@ -162,7 +171,8 @@ refs.categories.addEventListener("click", async e => {
       const markup = petsTemplate(res.animals);
       totalPages = Math.ceil(res.totalItems / limit);
       refs.petsList.innerHTML = markup;
-    } catch {
+    } catch(error) {
+      console.error(error);
       iziToast.show({
         message: `Something went wrong. Please try again later.`,
         color: "red",
