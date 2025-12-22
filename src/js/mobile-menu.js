@@ -2,33 +2,46 @@ const burgerBtn = document.querySelector('.burger-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 const closeBtn = document.getElementById('data-burger-close');
 const menuLinks = document.querySelectorAll('.menu-link-menu');
+const takeFriendBtn = document.querySelector('.btn-header-mobile');
 
-// відкрити меню
-burgerBtn.addEventListener('click', () => {
+let scrollY = 0;
+
+function handleEsc(e) {
+  if (e.key === 'Escape') {
+    closeMenu();
+  }
+}
+
+function openMenu() {
+  scrollY = window.scrollY;
+  document.body.style.top = `-${scrollY}px`;
+  document.body.classList.add('no-scroll');
   mobileMenu.classList.add('open');
-});
 
-// закрити меню
-closeBtn.addEventListener('click', () => {
+  window.addEventListener('keydown', handleEsc);
+}
+
+function closeMenu() {
   mobileMenu.classList.remove('open');
-});
+  document.body.classList.remove('no-scroll');
+  document.body.style.top = '';
+  window.scrollTo(0, scrollY);
 
-// закриття при кліку поза меню
+  window.removeEventListener('keydown', handleEsc);
+}
+
+burgerBtn.addEventListener('click', openMenu);
+
+closeBtn.addEventListener('click', closeMenu);
+
+takeFriendBtn.addEventListener('click', closeMenu);
+
 mobileMenu.addEventListener('click', (e) => {
   if (e.target === mobileMenu) {
-    mobileMenu.classList.remove('open');
-  }
-});
-// закриття по клавіші ESC
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
-    mobileMenu.classList.remove('open');
+    closeMenu();
   }
 });
 
-// закриття меню після кліку на посилання
 menuLinks.forEach(link => {
-  link.addEventListener('click', () => {
-    mobileMenu.classList.remove('open');
-  });
+  link.addEventListener('click', closeMenu);
 });

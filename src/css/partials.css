@@ -210,7 +210,7 @@
 .show-more {
   display: flex;
   margin: 0 auto;
-  padding: 12px 102px;
+  max-width: 375px;
   height: 45px;
   border-radius: 8px;
   justify-content: center;
