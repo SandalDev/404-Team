@@ -1,97 +1,167 @@
+import iziToast from 'izitoast';
 import Swal from 'sweetalert2';
+import { handleCloseModal } from './modalpet';
+import { closeModal } from './modalpet';
 
-const modal = document.querySelector('[data-order-modal]');
 const closeBtn = document.querySelector('[data-order-close]');
-const backdrop = document.querySelector('[data-backdrop]');
+const backdrop = document.querySelector('[data-order-modal]');
 const form = document.querySelector('[data-order-form]');
-const openBtn = document.querySelector('.modalpet-adopt-btn');
+
 const petModal = document.querySelector('.modalpet-backdrop');
+let currentAnimalId = null;
 
-/* ================= OPEN / CLOSE ================= */
+function onEscKeyPress(e) {
+  if (e.key !== 'Escape') return;
 
-function openModal() {
-  modal.classList.remove('is-hidden');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-  modal.classList.add('is-hidden');
-  // modal.removeEventListener('keydown');
-  document.body.style.overflow = '';
-}
-
-openBtn?.addEventListener('click', () => {
-  openModal();
-  petModal?.classList.add('is-hidden');
-});
-
-closeBtn?.addEventListener('click', closeModal);
-
-backdrop?.addEventListener('click', e => {
-  if (e.target === backdrop) closeModal();
-});
-
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && !modal.classList.contains('is-hidden')) {
+  if (!backdrop.classList.contains('is-hidden')) {
+    closeOrderModal();
     closeModal();
+  }
+}
+
+function openOrderModal() {
+  backdrop.classList.remove('is-hidden');
+  document.body.style.overflow = 'hidden';
+  window.addEventListener('keydown', onEscKeyPress);
+}
+
+function closeOrderModal() {
+  backdrop.classList.add('is-hidden');
+  document.body.style.overflow = '';
+  closeModal();
+  window.removeEventListener('keydown', onEscKeyPress);
+}
+
+
+document.addEventListener('click', e => {
+  const moreBtn = e.target.closest('.find-out-more');
+  if (!moreBtn) return;
+
+  const petCard = moreBtn.closest('li[data-id]');
+  const id = petCard?.dataset?.id;
+
+  if (!id) {
+    console.warn('Не знайшов data-id на pet-card');
+    currentAnimalId = null;
+    return;
+  }
+
+  currentAnimalId = id;
+});
+
+
+document.addEventListener('click', e => {
+  if (
+    e.target.classList.contains('modalpet-adopt-btn') &&
+    petModal &&
+    !petModal.classList.contains('is-hidden')
+  ) {
+    if (!currentAnimalId) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Не вдалося визначити тваринку',
+        text: 'ID тваринки не зчитався з картки. Натисни "Дізнатись більше" ще раз.',
+        confirmButtonText: 'Добре',
+      });
+      return;
+    }
+    
+    const petModalBackdrop = document.querySelector('.modalpet-backdrop');
+    if (petModalBackdrop) {
+      petModalBackdrop.classList.add('is-hidden');
+      currentAnimalId = null; 
+    }
+    
+    openOrderModal();
   }
 });
 
-/* ================= VALIDATION HELPERS ================= */
+
+closeBtn?.addEventListener('click', closeOrderModal);
+
+backdrop?.addEventListener('click', e => {
+  if (e.target === backdrop) closeOrderModal();
+});
+
 
 function showError(input, message) {
   const errorEl = input.parentElement.querySelector('.order-form__error');
   input.classList.add('is-error');
-  errorEl.textContent = message;
+  if (errorEl) errorEl.textContent = message;
 }
 
 function clearError(input) {
   const errorEl = input.parentElement.querySelector('.order-form__error');
   input.classList.remove('is-error');
-  errorEl.textContent = '';
+  if (errorEl) errorEl.textContent = '';
 }
 
-/* ================= SUBMIT (FRONTEND ONLY) ================= */
-
 form?.addEventListener('submit', e => {
-  e.preventDefault(); // 🔴 критично
+  e.preventDefault();
 
   const nameInput = form.elements.name;
   const phoneInput = form.elements.phone;
   const comment = form.elements.comment.value.trim();
-
+  const userName = nameInput.value.trim();
   let isValid = true;
 
   clearError(nameInput);
   clearError(phoneInput);
 
-  /* Name validation */
-  if (nameInput.value.trim().length < 2) {
+  if (userName.length < 2) {
     showError(nameInput, 'Імʼя повинно містити мінімум 2 символи');
     isValid = false;
   }
 
-  /* Phone validation */
-  const phonePattern =
-    /^\+38\s?\(?0\d{2}\)?\s?\d{3}\s?\d{2}\s?\d{2}$/;
-
-  if (!phonePattern.test(phoneInput.value.trim())) {
-    showError(phoneInput, 'Невірний формат номера');
+  const phone = phoneInput.value.trim();
+  const phoneDigits = phone.replace(/\D/g, '');
+  if (phoneDigits.length < 12) {
+    showError(phoneInput, 'Номер повинен містити повний код країни та номер');
     isValid = false;
   }
 
-  if (!isValid) return;
+  if (!isValid) {
+    iziToast.warning({
+      title: 'Упс!',
+      message: 'Введіть коректний номер телефону та імʼя.',
+    });
+    return;
+  }
 
-  /* ІМІТАЦІЯ ВІДПРАВКИ */
-  Swal.fire({
-    icon: 'success',
-    title: 'Заявку надіслано!',
-    text: 'Ми звʼяжемося з вами найближчим часом',
-    confirmButtonText: 'Добре',
-  });
+  const payload = {
+    animalId: currentAnimalId,
+    name: userName,
+    phone: phone,
+    comment: comment,
+  };
 
-  form.reset();
-  clearError(nameInput);
-  clearError(phoneInput);
-  closeModal();
+  fetch('https://paw-hut.b.goit.study/api/orders', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  })
+    .then(res => {
+      if (!res.ok) throw new Error('Помилка мережі');
+      return res.json();
+    })
+    .then(data => {
+      console.log('Відповідь сервера:', data);
+      Swal.fire({
+        icon: 'success',
+        title: 'Заявку надіслано!',
+        text: 'Ми звʼяжемося з вами найближчим часом',
+        confirmButtonText: 'Добре',
+      });
+      form.reset();
+      closeOrderModal();
+    })
+    .catch(err => {
+      console.error('Помилка при відправці:', err);
+      Swal.fire({
+        icon: 'error',
+        title: 'Не вдалося відправити заявку',
+        text: 'Спробуйте пізніше',
+        confirmButtonText: 'Добре',
+      });
+    });
 });
