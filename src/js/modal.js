@@ -1,39 +1,34 @@
+import iziToast from 'izitoast';
 import Swal from 'sweetalert2';
 
-const modal = document.querySelector('[data-order-modal]');
 const closeBtn = document.querySelector('[data-order-close]');
-const backdrop = document.querySelector('[data-backdrop]');
+const backdrop = document.querySelector('[data-order-modal]');
 const form = document.querySelector('[data-order-form]');
 
 const petModal = document.querySelector('.modalpet-backdrop');
-const adoptBtn = document.querySelector('.modalpet-adopt-btn'); // кнопка "Взяти додому"
-
 let currentAnimalId = null;
 
 /* ================= ESC HANDLER ================= */
 
 function onEscKeyPress(e) {
-  if (e.key === 'Escape') closeModal();
+  if (e.key === 'Escape') closeOrderModal();
 }
 
-/* ================= OPEN / CLOSE ================= */
+/* ================= OPEN / CLOSE ORDER MODAL ================= */
 
-function openModal() {
-  modal.classList.remove('is-hidden');
+function openOrderModal() {
+  backdrop.classList.remove('is-hidden');
   document.body.style.overflow = 'hidden';
   document.addEventListener('keydown', onEscKeyPress);
 }
 
-function closeModal() {
-  modal.classList.add('is-hidden');
+function closeOrderModal() {
+  backdrop.classList.add('is-hidden');
   document.body.style.overflow = '';
   document.removeEventListener('keydown', onEscKeyPress);
 }
 
-/* ================== 1) CAPTURE ID FROM CARD ==================
-   Ловимо клік по "Дізнатись більше" на картці
-   і зберігаємо data-id з <li class="pet-card" data-id="...">
-=============================================================== */
+/* ================== 1) CAPTURE ID FROM CARD ================== */
 
 document.addEventListener('click', e => {
   const moreBtn = e.target.closest('.find-out-more');
@@ -51,29 +46,38 @@ document.addEventListener('click', e => {
   currentAnimalId = id;
 });
 
-/* ================== 2) OPEN ORDER MODAL FROM ADOPT ================== */
+/* ================== 2) ОБРОБНИК ДЛЯ ДИНАМІЧНО СТВОРЕНОЇ КНОПКИ ================== */
 
-adoptBtn?.addEventListener('click', () => {
-  if (!currentAnimalId) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Не вдалося визначити тваринку',
-      text: 'ID тваринки не зчитався з картки. Натисни “Дізнатись більше” ще раз.',
-      confirmButtonText: 'Добре',
-    });
-    return;
+// Додаємо делегування подій на весь document для кнопки "Взяти додому"
+document.addEventListener('click', e => {
+  if (e.target.classList.contains('modalpet-adopt-btn')) {
+    if (!currentAnimalId) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Не вдалося визначити тваринку',
+        text: 'ID тваринки не зчитався з картки. Натисни "Дізнатись більше" ще раз.',
+        confirmButtonText: 'Добре',
+      });
+      return;
+    }
+    
+    // Закриваємо модалку з твариною
+    const petModalBackdrop = document.querySelector('.modalpet-backdrop');
+    if (petModalBackdrop) {
+      petModalBackdrop.classList.add('is-hidden');
+    }
+    
+    // Відкриваємо модалку замовлення
+    openOrderModal();
   }
-
-  openModal();
-  petModal?.classList.add('is-hidden');
 });
 
 /* ================= EVENTS ================= */
 
-closeBtn?.addEventListener('click', closeModal);
+closeBtn?.addEventListener('click', closeOrderModal);
 
 backdrop?.addEventListener('click', e => {
-  if (e.target === backdrop) closeModal();
+  if (e.target === backdrop) closeOrderModal();
 });
 
 /* ================= VALIDATION HELPERS ================= */
@@ -98,39 +102,67 @@ form?.addEventListener('submit', e => {
   const nameInput = form.elements.name;
   const phoneInput = form.elements.phone;
   const comment = form.elements.comment.value.trim();
-
+  const userName = nameInput.value.trim();
   let isValid = true;
 
   clearError(nameInput);
   clearError(phoneInput);
 
-  if (nameInput.value.trim().length < 2) {
+  if (userName.length < 2) {
     showError(nameInput, 'Імʼя повинно містити мінімум 2 символи');
     isValid = false;
   }
 
-  const phonePattern = /^\+38\s?\(?0\d{2}\)?\s?\d{3}\s?\d{2}\s?\d{2}$/;
-  if (!phonePattern.test(phoneInput.value.trim())) {
-    showError(phoneInput, 'Невірний формат номера');
+  // Зберігаємо формат з +38
+  const phone = phoneInput.value.trim();
+  const phoneDigits = phone.replace(/\D/g, '');
+  if (phoneDigits.length < 12) { // +38XXXXXXXXXX = 12 цифр з плюсом
+    showError(phoneInput, 'Номер повинен містити повний код країни та номер');
     isValid = false;
   }
 
-  if (!isValid) return;
+  if (!isValid) {
+    iziToast.warning({
+      title: 'Упс!',
+      message: 'Введіть коректний номер телефону та імʼя.',
+    });
+    return;
+  }
 
-  // ✅ тут ID вже є і готовий для POST, якщо захочеш:
-  console.log('animalId for order:', currentAnimalId);
-  console.log('comment:', comment);
+  const payload = {
+    animalId: currentAnimalId,
+    name: userName,
+    phone: phone,
+    comment: comment,
+  };
 
-  Swal.fire({
-    icon: 'success',
-    title: 'Заявку надіслано!',
-    text: 'Ми звʼяжемося з вами найближчим часом',
-    confirmButtonText: 'Добре',
-  });
-
-  form.reset();
-  clearError(nameInput);
-  clearError(phoneInput);
-
-  closeModal();
+  fetch('https://paw-hut.b.goit.study/api/orders', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  })
+    .then(res => {
+      if (!res.ok) throw new Error('Помилка мережі');
+      return res.json();
+    })
+    .then(data => {
+      console.log('Відповідь сервера:', data);
+      Swal.fire({
+        icon: 'success',
+        title: 'Заявку надіслано!',
+        text: 'Ми звʼяжемося з вами найближчим часом',
+        confirmButtonText: 'Добре',
+      });
+      form.reset();
+      closeOrderModal();
+    })
+    .catch(err => {
+      console.error('Помилка при відправці:', err);
+      Swal.fire({
+        icon: 'error',
+        title: 'Не вдалося відправити заявку',
+        text: 'Спробуйте пізніше',
+        confirmButtonText: 'Добре',
+      });
+    });
 });
